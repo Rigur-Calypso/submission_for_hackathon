@@ -11,6 +11,10 @@ import sqlite3
 import re
 import google.generativeai as genai
 import itertools
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Allow multiple comma-separated keys
 API_KEY_STRING = os.environ.get("GEMINI_API_KEY")

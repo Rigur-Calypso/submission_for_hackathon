@@ -6,3 +6,4 @@ python-dateutil==2.9.0.post0
 word2number==1.1
 pytest>=8.0
 google-generativeai>=0.8.0
+python-dotenv>=1.0.0
