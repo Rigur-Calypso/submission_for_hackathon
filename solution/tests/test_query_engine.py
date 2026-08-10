@@ -3,7 +3,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-from query_engine import AnswerStatus, answer_question
+from query_engine import AnswerStatus, answer_question, classify_question
 
 
 def test_query_engine_returns_structured_result(knowledge_db):
@@ -46,10 +46,9 @@ def test_adversarial_client_abbreviations(knowledge_db):
 
 def test_adversarial_reversed_date(knowledge_db):
     # "completed after 10 March 2021" vs "2021-03-10"
-    answer_question("What is the total value of projects completed after 10 March, 2021 by Rahul Menon?", knowledge_db)
-    # The date parsing in intent is not doing 'cert_issue_date', it extracts 'threshold' or maybe it's completely unhandled.
-    # The existing intent parser handles dates with a simple regex for 'cert_issue_date' like YYYY-MM-DD. It doesn't parse '10 March 2021' perfectly into cert_issue_date.
-    # I will assert that we added aliases for PHED and NHAI and that ambiguity works.
+    intent = classify_question("What is the total value of projects completed after 10 March, 2021 by Rahul Menon?", knowledge_db)
+    assert intent['shape'] == "temporal_chain"
+    assert intent['cert_issue_date'] == '2021-03-10'
 
 def test_adversarial_at_least(knowledge_db):
     res = answer_question("Sum of projects for NHAI at least 20 Crore.", knowledge_db)

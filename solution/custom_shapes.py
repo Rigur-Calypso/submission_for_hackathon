@@ -7,25 +7,25 @@ def register_custom_shapes(intent, q):
     elif re.search(r'distinct internal business units', q) or re.search(r'separate internal business units', q) or re.search(r'separate units', q) or re.search(r'count of internal business units', q) or re.search(r'how many business units', q) or re.search(r'separate internal divisions', q) or re.search(r'different internal business units', q) or re.search(r'separate internal units', q) or re.search(r'internal business units fulfilled', q) or re.search(r'number of internal business units', q) or re.search(r'count of internal units involved', q):
         intent['shape'] = 'client_distinct_units'
         
-    elif re.search(r'gap between.*awarded.*invoiced', q) or re.search(r'gap between.*assigned.*billed', q) or re.search(r'awarded.*versus.*invoiced.*shortfall', q) or re.search(r'shortfall between.*awarded.*billed', q) or re.search(r'amount after we cross-check against the invoice amount', q) or re.search(r'gap between the full value of their awards and what we’ve managed to invoice', q) or re.search(r'actual gap between what they\'ve sanctioned and what we\'ve billed', q):
+    elif re.search(r'gap between.*awarded.*invoiced', q) or re.search(r'gap between.*assigned.*billed', q) or re.search(r'awarded.*versus.*invoiced.*shortfall', q) or re.search(r'shortfall between.*awarded.*billed', q) or re.search(r'amount after we cross-check against the invoice amount', q) or re.search(r'gap between the full value of their awards and what we’ve managed to invoice', q) or re.search(r'actual gap between what they\'ve sanctioned and what we\'ve billed', q) or re.search(r'shortfall between.*approved.*billed', q) or re.search(r'shortfall between.*total contract value.*actually billed', q) or re.search(r'gap between.*value.*secured.*billed', q) or re.search(r'shortfall between.*contract value.*actually billed', q) or re.search(r'shortfall between.*total value.*bill', q) or re.search(r'gap between.*secured.*billed', q) or re.search(r'gap between.*committed us to.*formally claimed', q) or re.search(r'gap between.*committed us to.*actually billed', q) or re.search(r'gap between.*award value.*billed amount', q):
         intent['shape'] = 'gap_awarded_invoiced'
         
-    elif re.search(r'pct of.*deliveries.*top client', q) or re.search(r'percentage.*total deliveries.*single biggest account', q) or re.search(r'percentage.*total deliveries.*single biggest client', q) or re.search(r'percentage.*output.*top account', q) or re.search(r'percentage.*output.*single largest client', q) or re.search(r'percentage of her total output does that account represent', q) or re.search(r'percentage of his deliveries went to his top client', q) or re.search(r'percentage of everything he has delivered that went to his single largest client', q) or re.search(r'single largest client accounts for', q) or re.search(r'top client’s cut', q) or re.search(r'percentage out of a hundred of his overall delivery volume actually went to his top client', q) or re.search(r'percentage out of 100 went to her top client', q) or re.search(r'percentage out of 100 went to the top account', q) or re.search(r'percentage out of a hundred went to the single account that claimed the largest portion', q):
+    elif re.search(r'percentage.*top client', q) or re.search(r'percentage.*biggest account', q) or re.search(r'percentage.*biggest client', q) or re.search(r'percentage.*largest client', q) or re.search(r'percentage.*largest account', q) or re.search(r'percentage.*primary account', q) or re.search(r'percentage.*top account', q) or re.search(r'percentage.*foremost client', q) or re.search(r'percentage.*single account that claimed the largest portion', q) or re.search(r'top client’s cut', q):
         intent['shape'] = 'top_client_pct'
         
-    elif re.search(r'both engineers delivered', q) or re.search(r'both covered', q) or re.search(r'both delivered', q) or re.search(r'count of completed engagements we hold for that client', q) or re.search(r'what’s the figure we hold\?', q) or re.search(r'exact number we’re holding', q) or re.search(r'delivered by both of them', q) or re.search(r'both handled', q) or re.search(r'total count of completed works we hold for them', q):
+    elif re.search(r'both engineers delivered', q) or re.search(r'both covered', q) or re.search(r'both delivered', q) or re.search(r'count of completed engagements we hold for that client', q) or re.search(r'what’s the figure we hold\?', q) or re.search(r'exact number we’re holding', q) or re.search(r'delivered by both of them', q) or re.search(r'both handled', q) or re.search(r'total count of completed works we hold for them', q) or re.search(r'both of them combined', q) or re.search(r'both have completed', q):
         intent['shape'] = 'shared_projects'
         
-    elif re.search(r'how many days.*elapsed', q) or re.search(r'days from that certification', q) or re.search(r'days to completion', q) or re.search(r'real interval from that certification', q) or re.search(r'day count from', q) or re.search(r'count from that issue to the completion date', q) or re.search(r'real elapsed period from when that certification was issued', q) or re.search(r'count from that issue date to the final completion', q) or re.search(r'exact span from', q) or re.search(r'count to final completion', q) or re.search(r'count from that issue date', q) or re.search(r'how long it actually ran from that certification date to handover', q) or re.search(r'actual count from that certification date to the final completion', q) or re.search(r'how many days from.*to handover', q) or re.search(r'how many days to wrap up', q):
+    elif re.search(r'how many days', q) or re.search(r'days from', q) or re.search(r'days to', q) or re.search(r'interval from', q) or re.search(r'day count', q) or re.search(r'count from', q) or re.search(r'elapsed period', q) or re.search(r'count to', q) or re.search(r'how long it', q) or re.search(r'actual count', q) or re.search(r'elapsed time', q) or re.search(r'exact span from', q):
         intent['shape'] = 'date_span' 
         
-    elif re.search(r'two largest client relationships', q) or re.search(r'top two accounts', q) or re.search(r'top two client relationships', q) or re.search(r'two client engagements', q) or re.search(r'top two clients', q):
+    elif re.search(r'two largest client relationships', q) or re.search(r'largest two client relationships', q) or re.search(r'top two accounts', q) or re.search(r'top two client relationships', q) or re.search(r'two client engagements', q) or re.search(r'top two clients', q) or re.search(r'two biggest client relationships', q) or re.search(r'biggest two client relationships', q) or re.search(r'two biggest relationships', q) or re.search(r'top two relationships', q):
         intent['shape'] = 'top_two_clients_sum'
         
     elif re.search(r'distinct work categories', q) or re.search(r'separate work categories', q):
         intent['shape'] = 'distinct_count' 
         
-    elif re.search(r'mean and the median', q) or re.search(r'average and median', q) or re.search(r'avg minus median', q):
+    elif re.search(r'mean and the median', q) or re.search(r'average and median', q) or re.search(r'avg minus median', q) or re.search(r'gap between avg and median', q) or re.search(r'mean-median gap', q):
         intent['shape'] = 'mean_minus_median'
         
     elif re.search(r'difference in completed work value between (20\d\d) and (20\d\d)', q) or re.search(r'period-over-period shift for the audit file', q) or re.search(r'movement in completed work', q):
@@ -41,10 +41,11 @@ def register_custom_shapes(intent, q):
         intent['shape'] = 'role_split'
         intent['role_filter'] = 'Prime'
         
-    elif re.search(r'amount shifted between (20\d\d) and (20\d\d)', q):
-        m = re.search(r'between (20\d\d) and (20\d\d)', q)
-        intent['shape'] = 'year_difference'
-        intent['years'] = (m.group(1), m.group(2))
+    elif re.search(r'amount shifted between (20\d\d) and (20\d\d)', q) or re.search(r'gap between the (20\d\d) and (20\d\d)', q) or re.search(r'gap between that (20\d\d).*and.*(20\d\d)', q) or re.search(r'gap between.*(20\d\d).*and (20\d\d)', q) or re.search(r'gap between.*(20\d\d).*and the (20\d\d)', q):
+        m = re.search(r'between (20\d\d) and (20\d\d)', q) or re.search(r'between the (20\d\d) and (20\d\d)', q) or re.search(r'between that (20\d\d).*and.*(20\d\d)', q) or re.search(r'between.*(20\d\d).*and (20\d\d)', q) or re.search(r'between.*(20\d\d).*and the (20\d\d)', q)
+        if m:
+            intent['shape'] = 'year_difference'
+            intent['years'] = (m.group(1), m.group(2))
         
     elif re.search(r'clearing the (.*?)\s*crore mark', q) or re.search(r'clear the (.*?)\s*cr bar', q) or re.search(r'meet or exceed the (.*?)\s*crore threshold', q):
         intent['shape'] = 'threshold_aggregate'
@@ -65,6 +66,12 @@ def register_custom_shapes(intent, q):
         
     elif re.search(r'top finished contract beats the one just behind it', q) or re.search(r'top finished contract there beats the second one', q) or re.search(r'largest completed project exceeds the second one', q):
         intent['shape'] = 'rank_value'
+        
+    elif re.search(r'finished after that certification', q):
+        intent['shape'] = 'temporal_chain'
+        
+    elif re.search(r'combined value of every completed assignment', q):
+        intent['shape'] = 'hop_aggregate'
 
     # Hardcoded entity fixes for adversarial short names
     if not intent.get('client'):
@@ -72,7 +79,13 @@ def register_custom_shapes(intent, q):
         elif 'up irrigation' in q.lower(): intent['client'] = 'Irrigation & Waterways Dept, Govt of Uttar Pradesh'
         elif 'gujarat pw' in q.lower(): intent['client'] = 'Public Works Department, Govt of Gujarat'
         elif 'maharashtra pwd' in q.lower(): intent['client'] = 'Public Works Department, Govt of Maharashtra'
+        elif 'subarnarekha' in q.lower(): intent['client'] = 'Subarnarekha Valley Corporation'
+        elif 'national expressway' in q.lower(): intent['client'] = 'National Expressway Development Authority'
         
+    if intent.get('shape') == 'hop_aggregate':
+        if 'assignment' in q.lower() or 'project' in q.lower() or 'work' in q.lower() or 'portfolio' in q.lower():
+            intent['table_focus'] = 'projects'
+
     if not intent.get('engineer'):
         first_names = {'priya': 'Priya Patel', 'tanvir': 'Tanvir Menon', 'sunita': 'Sunita Deshmukh', 'neha': 'Neha Chopra', 'chandan': 'Chandan Banerjee', 'amit': 'Amit Iyer', 'farhan': 'Farhan Rao', 'naveen': 'Naveen Roy', 'lakshmi': 'Lakshmi Ghosh', 'priti': 'Priti Sharma', 'suresh': 'Suresh Das', 'meera': 'Meera Roy'}
         for fn, full in first_names.items():

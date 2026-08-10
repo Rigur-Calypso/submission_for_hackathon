@@ -199,7 +199,7 @@ def answer_questions(questions_path: str, output_path: str, use_llm: bool = Fals
             val = res.value
             
             # Custom deterministic fallback for adversarial questions
-            if res.status == query_engine.AnswerStatus.UNSUPPORTED:
+            if res.status in (query_engine.AnswerStatus.UNSUPPORTED, query_engine.AnswerStatus.NO_MATCH) or val == 0:
 
                 import custom_shapes
                 intent = query_engine.classify_question(q['question'], db)
