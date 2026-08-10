@@ -6,11 +6,27 @@ Replaces the regex-based classifier with a Gemini-powered engine that can
 dynamically generate SQL for all 21 reasoning patterns.
 """
 import os
-import re
-import sqlite3
 import sys
-
+import sqlite3
+import re
 import google.generativeai as genai
+import itertools
+
+# Allow multiple comma-separated keys
+API_KEY_STRING = os.environ.get("GEMINI_API_KEY")
+API_KEYS = [k.strip() for k in API_KEY_STRING.split(",")] if API_KEY_STRING else []
+API_KEY_CYCLE = itertools.cycle(API_KEYS) if API_KEYS else None
+
+CURRENT_API_KEY = next(API_KEY_CYCLE) if API_KEY_CYCLE else None
+
+def switch_api_key():
+    global CURRENT_API_KEY
+    if API_KEYS and len(API_KEYS) > 1:
+        CURRENT_API_KEY = next(API_KEY_CYCLE)
+        genai.configure(api_key=CURRENT_API_KEY)
+        print(f"  [LLM Engine] Switched to next API key.")
+    else:
+        print("  [LLM Engine] Only 1 API key provided. Cannot switch.")
 
 SOLUTION_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SOLUTION_DIR)
@@ -182,7 +198,9 @@ def extract_sql(text: str) -> str:
     return text.strip('`').strip()
 
 def ask_gemini(prompt: str, model_name: str = 'gemini-3.5-flash') -> str:
-    genai.configure(api_key=API_KEY)
+    if not CURRENT_API_KEY:
+        raise ValueError("No API Key configured.")
+    genai.configure(api_key=CURRENT_API_KEY)
     model = genai.GenerativeModel(model_name)
     import time
     for attempt in range(5):
@@ -193,19 +211,23 @@ def ask_gemini(prompt: str, model_name: str = 'gemini-3.5-flash') -> str:
             )
             return extract_sql(response.text)
         except Exception as e:
-            if '429' in str(e):
-                print("  [LLM Engine] 429 Rate Limit. Sleeping 60s...")
-                time.sleep(60)
+            if '429' in str(e) or 'quota' in str(e).lower() or 'exhausted' in str(e).lower():
+                print(f"  [LLM Engine] Rate limit/Quota hit on attempt {attempt+1}. Error: {e}")
+                if len(API_KEYS) > 1:
+                    switch_api_key()
+                else:
+                    print("  [LLM Engine] Sleeping 60s...")
+                    time.sleep(60)
             else:
                 raise
-    raise ValueError("Failed after 5 attempts due to rate limit.")
+    raise ValueError("Failed after 5 attempts due to rate limit/quota.")
 
 def answer_question(question: str, db: sqlite3.Connection, model_name: str = 'gemini-3.5-flash') -> tuple[float, dict]:
     """
     Answers a question by asking Gemini to write a SQL query.
     Returns (answer, intent_dict) to match the interface of query_engine.py.
     """
-    if not API_KEY:
+    if not API_KEYS:
         print("  [LLM Engine] No GEMINI_API_KEY found, falling back to regex engine.")
         return query_engine.answer_question(question, db)
 
@@ -261,7 +283,7 @@ def answer_question(question: str, db: sqlite3.Connection, model_name: str = 'ge
 
 def llm_classify_question(question: str, model_name: str = 'gemini-3.5-flash') -> dict:
     """Classifies the question intent using the LLM and returns a dictionary."""
-    if not API_KEY:
+    if not API_KEYS:
         print("  [LLM Engine] No GEMINI_API_KEY found, cannot classify.")
         return {'shape': 'unknown', 'table_focus': 'projects', 'answer_type': 'count'}
 
@@ -295,7 +317,7 @@ Output exactly the exact names as they appear in the question so they can be fuz
 Question: {question}
 JSON:
 """
-    genai.configure(api_key=API_KEY)
+    genai.configure(api_key=CURRENT_API_KEY)
     model = genai.GenerativeModel(model_name)
     import time
     for attempt in range(3):
@@ -311,9 +333,15 @@ JSON:
             parsed = json.loads(response.text)
             return parsed
         except Exception as e:
-            if '429' in str(e):
-                print("  [LLM Engine] 429 Rate Limit. Sleeping 60s...")
-                time.sleep(60)
+            if '429' in str(e) or 'quota' in str(e).lower() or 'exhausted' in str(e).lower():
+                print(f"  [LLM Engine] Rate limit/Quota hit on classification attempt {attempt+1}. Error: {e}")
+                if len(API_KEYS) > 1:
+                    switch_api_key()
+                    genai.configure(api_key=CURRENT_API_KEY)
+                    model = genai.GenerativeModel(model_name)
+                else:
+                    print("  [LLM Engine] Sleeping 60s...")
+                    time.sleep(60)
             else:
                 print(f"  [LLM Classification Error] {e}")
                 return {'shape': 'unknown', 'table_focus': 'projects', 'answer_type': 'count'}
@@ -321,7 +349,7 @@ JSON:
 
 if __name__ == '__main__':
     # Test script if run directly
-    if not API_KEY:
+    if not API_KEYS:
         print("Set GEMINI_API_KEY to test.")
         sys.exit(1)
     db = sqlite3.connect(DB_PATH)
