@@ -193,6 +193,7 @@ def answer_questions(questions_path: str, output_path: str, use_llm: bool = Fals
     
     results = []
     with open(output_path, 'w') as f:
+        f.write("question_id,answer\n")
         for q in questions:
             res = query_engine.answer_question(q['question'], db)
             val = res.value
@@ -216,11 +217,19 @@ def answer_questions(questions_path: str, output_path: str, use_llm: bool = Fals
                 
                 print(f"    Classified Intent: {intent}")
                 res = query_engine.answer_question_with_intent(q['question'], intent, db)
+                
+                # Raw-SQL fallback if the shape is unknown or unsupported
+                if res.status == query_engine.AnswerStatus.UNSUPPORTED:
+                    print(f"    Intent-based routing unsupported. Falling back to raw-SQL for: {q['qid']}")
+                    val = llm_query_engine.answer_question(q['question'], db, model_name=model_name)
+                else:
+                    val = res.value
+            else:
                 val = res.value
             
             qid = q['qid']
             ans_str = str(int(val)) if isinstance(val, float) and val.is_integer() else str(val)
-            f.write(json.dumps({'qid': qid, 'answer': ans_str}) + '\n')
+            f.write(f"{qid},{ans_str}\n")
             results.append({'qid': qid, 'answer': ans_str})
             
             print(f"  {qid}: answer={ans_str}")
@@ -237,7 +246,7 @@ def validate(use_llm: bool = False, model_name: str = 'gemini-3.5-flash'):
     sample_path = os.path.join(SOLUTION_DIR, '..', 'sample_questions.json')
     out_dir = os.path.join(SOLUTION_DIR, '..', 'output')
     os.makedirs(out_dir, exist_ok=True)
-    output_path = os.path.join(out_dir, 'sample_submission.jsonl')
+    output_path = os.path.join(out_dir, 'sample_submission.csv')
     
     # Generate answers
     answer_questions(sample_path, output_path, use_llm, model_name)
@@ -271,7 +280,7 @@ def load_env():
 def main():
     parser = argparse.ArgumentParser(description="BITS Hackathon Pipeline")
     parser.add_argument('--questions', help='Path to questions JSON file')
-    parser.add_argument('--output', default='output/submission.jsonl', help='Output JSONL path')
+    parser.add_argument('--output', default='output/submission.csv', help='Output CSV path')
     parser.add_argument('--skip-build', action='store_true', help="Skip rebuilding the DB if it exists")
     parser.add_argument('--validate', action='store_true', help="Run evaluation after building")
     parser.add_argument('--use-llm', action=argparse.BooleanOptionalAction, default=True, help="Use Gemini LLM fallback instead of deterministic only")

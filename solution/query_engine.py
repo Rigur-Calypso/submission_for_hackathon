@@ -145,9 +145,9 @@ def extract_date_from_question(question: str) -> str | None:
     if m:
         return m.group(1)
     
-    # Verbose: "March 10, 2021"
+    # Verbose: "March 10, 2021" or "10 March 2021" or "10th March, 2021"
     m = re.search(
-        r'((?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4})',
+        r'((?:\d{1,2}(?:st|nd|rd|th)?\s+)?(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}|\d{1,2}(?:st|nd|rd|th)?\s+(?:January|February|March|April|May|June|July|August|September|October|November|December),?\s+\d{4})',
         question, re.IGNORECASE
     )
     if m:
@@ -446,7 +446,7 @@ def handle_date_span(db: sqlite3.Connection, intent: dict) -> float | AnswerStat
     # Get cert issue date
     cert_date = None
     if cert_issue_date_str:
-        cert_date = datetime.strptime(cert_issue_date_str, '%Y-%m-%d')
+        cert_date = dateparser.parse(cert_issue_date_str)
     elif engineer and cert_type:
         cursor = db.execute("""
             SELECT c.issue_date FROM certifications c
@@ -455,7 +455,7 @@ def handle_date_span(db: sqlite3.Connection, intent: dict) -> float | AnswerStat
         """, (engineer, cert_type))
         row = cursor.fetchone()
         if row and row[0]:
-            cert_date = datetime.strptime(row[0], '%Y-%m-%d')
+            cert_date = dateparser.parse(row[0])
     
     if not cert_date:
         return AnswerStatus.NO_MATCH
@@ -471,7 +471,7 @@ def handle_date_span(db: sqlite3.Connection, intent: dict) -> float | AnswerStat
             )
             row = cursor.fetchone()
             if row and row[0]:
-                completion_date = datetime.strptime(row[0], '%Y-%m-%d')
+                completion_date = dateparser.parse(row[0])
     
     if cert_date and completion_date:
         return abs((completion_date - cert_date).days)
