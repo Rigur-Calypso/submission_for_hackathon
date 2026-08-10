@@ -1,0 +1,36 @@
+name: BITS Hackathon Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r solution/requirements.txt
+        
+    - name: Extract text and data from PDFs
+      run: make extract
+      
+    - name: Build Knowledge Graph
+      run: make build
+      
+    - name: Validate Query Engine against sample questions
+      run: make validate
+      
+    - name: Run Tests
+      run: pytest solution/tests/
