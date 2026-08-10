@@ -222,7 +222,7 @@ def answer_questions(questions_path: str, output_path: str, use_llm: bool = Fals
                     val = custom_shapes.handle_mean_minus_median(db, intent)
                 elif shape == 'year_difference':
                     val = custom_shapes.handle_year_difference(db, intent)
-                elif shape in ['date_span', 'avg_work_size', 'distinct_count', 'role_split', 'threshold_aggregate', 'referenced_share', 'hop_aggregate']:
+                elif shape in ['date_span', 'avg_work_size', 'distinct_count', 'role_split', 'threshold_aggregate', 'referenced_share', 'hop_aggregate', 'exclusion_aggregate', 'rank_value']:
                     val_res = query_engine.answer_question_with_intent(q['question'], intent, db)
                     val = val_res.value if hasattr(val_res, 'value') else (val_res if isinstance(val_res, (int, float)) else 0)
                 else:
