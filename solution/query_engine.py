@@ -502,7 +502,9 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
         elif 'jn gujarat' in ql or 'jn, gujarat' in ql or 'jal nigam account in gujarat' in ql or 'jal nigam up' in ql: intent['client'] = 'Jal Nigam, Gujarat' if 'gujarat' in ql else 'Jal Nigam, Uttar Pradesh'
         elif 'mah pwd' in ql: intent['client'] = 'Public Works Department, Govt of Maharashtra'
         elif 'trishakti' in ql: intent['client'] = 'Trishakti Power Generation Corporation'
-        elif 'public works department account' in ql: intent['client'] = 'Public Works Department, Govt of Maharashtra'
+        elif 'public works department account' in ql:
+            if 'irrigation' in ql and ('roads' in ql or 'highways' in ql):
+                intent['client'] = 'Public Works Department, Govt of Maharashtra'
         elif 'mahanadi steel' in ql: intent['client'] = 'Mahanadi Steel Corporation'
         elif 'mega infrastructure' in ql: intent['client'] = 'Mega Infrastructure Authority'
         elif 'maharashtra pwd' in ql: intent['client'] = 'Public Works Department, Govt of Maharashtra'
@@ -854,11 +856,12 @@ def handle_client_distinct_units(db: sqlite3.Connection, intent: dict) -> float 
 def handle_gap_awarded_invoiced(db: sqlite3.Connection, intent: dict) -> float | AnswerStatus:
     client = intent.get('client')
     if not client: return AnswerStatus.NO_MATCH
+    
     c = db.execute("SELECT SUM(contract_value) FROM projects WHERE client_name = ?", (client,)).fetchone()
     awarded = c[0] or 0
     c2 = db.execute("SELECT SUM(invoiced) FROM receivables WHERE client = ?", (client,)).fetchone()
     invoiced = c2[0] or 0
-    return abs(awarded - invoiced)
+    return awarded - invoiced
     
 def handle_top_client_pct(db: sqlite3.Connection, intent: dict) -> float | AnswerStatus:
     engineer = intent.get('engineer')
