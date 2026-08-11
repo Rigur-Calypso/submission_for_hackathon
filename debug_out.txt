@@ -1,0 +1,376 @@
+Extracting full text from all PDFs (dual: pdfplumber + pypdf)...
+  Extracted full text from 678 PDFs
+Extracting Company Completion Certificates...
+  Extracted 155 CCC documents
+Extracting Past Performance Portfolio...
+  Extracted 155 PPP entries
+Extracting Client Completion Certificates...
+  Extracted 155 CC documents
+Extracting Reference Letters...
+  Extracted 132 REF documents
+Extracting Personnel Certificates...
+  Extracted 48 PCERT documents
+Extracting Excel Workbooks...
+  Extracted 9 XLSX workbooks
+Extracting Phase 4 Batch 1 Documents...
+Extracting Phase 4 Batch 2 Documents...
+
+✅ All data saved to /Users/rigur_calypso/Desktop/BITS-Hackathon-Dataset-main/solution/extracted_data.json
+   File size: 3,133,555 bytes
+
+📊 Extraction Summary:
+   CCC projects: 155
+   PPP entries:  155
+   CC documents: 155
+   REF letters:  132
+   PCERT certs:  48
+   XLSX files:   9
+   CVs:          39
+   Fin. Stmts:   7
+   Final RA:     6
+   RA Bills:     6
+   Bank Stmts:   8
+   Ledger Ents:  8
+   Perf Bonds:   60
+   Comp Matrix:  168
+   Tender Doss.: 6
+   ISO Certs:    5
+   Ann. Reports: 2
+
+   CCC Missing Values:
+     project_name:  0/155
+     client:        0/155
+     contract_value:0/155
+     completion_date:0/155
+     grading:       76/155
+
+   PPP Missing Roles: 0/155
+   REF Missing Project Name: 0/132
+Step 0: Registering source documents...
+  Registered 687 source documents
+Step 1: Building projects from CCC...
+  Inserted 155 projects
+Step 2: Merging role info from PPP...
+  Updated 155 projects with role info
+Step 3: Linking and merging grading from CC...
+  Linked 155 client certificates; updated 50 missing gradings
+Step 4: Building engineers...
+  Inserted 39 engineers
+Step 5: Linking engineers to projects...
+  Created 155 engineer-project links
+Step 6: Inserting certifications...
+  Inserted 48 certifications
+Step 7: Matching reference letters...
+  Matched 132, unmatched 0
+
+Step 8: Loading Excel data...
+  Loaded 210 plant/equipment entries
+  Loaded 519 receivable entries
+  Loaded 201 trial balance entries
+  Loaded 43 BOQ items, 407 measurements
+
+Step 9: Loading Phase 4 Batch 1 Documents...
+  Loaded 39 CVs
+  Loaded 7 Financial Statements
+  Loaded 6 Final RA Bills
+  Loaded 6 RA Bills
+  Loaded 8 Bank Statements
+  Loaded 8 Ledger Entries
+
+Step 10: Loading Phase 4 Batch 2 Documents...
+  Loaded 60 Performance Bonds
+  Loaded 168 Compliance Matrix rows
+  Loaded 6 Tender Dossiers
+  Loaded 5 ISO Certificates
+  Loaded 2 Annual Reports
+
+Step 11: Loading documents text...
+  Loaded 678 documents text
+
+Step 12: Recording project fact provenance...
+  Recorded 1754 project fact records
+
+Step 13: Reconciling contract values...
+  Reconciled 1 contract values with independent documents
+
+============================================================
+KNOWLEDGE GRAPH BUILD REPORT
+============================================================
+  projects            : 155
+  with_value          : 155
+  with_grading        : 129
+  with_role           : 155
+  with_ref            : 132
+  engineers           : 39
+  certifications      : 48
+  eng_proj_links      : 155
+  ref_letters         : 132
+  source_documents    : 687
+  extraction_errors   : 0
+  fact_provenance     : 1754
+
+  Projects missing grading: 26/155
+  Projects missing client certificate link: 0/155
+
+  Grading distribution:
+    Satisfactory   : 45
+    Very Good      : 31
+    Good           : 27
+    (missing)      : 26
+    Excellent      : 26
+
+  Role distribution:
+    Prime          : 96
+    JV Partner     : 59
+
+  Top clients by project count:
+    Trishakti Power Generation Corporation       :  19 projects, ₹856 Cr
+    Mahanadi Steel Corporation                   :  12 projects, ₹330 Cr
+    National Expressway Development Authority    :   9 projects, ₹294 Cr
+    Subarnarekha Valley Corporation              :   9 projects, ₹370 Cr
+    Suvarna Projects Limited                     :   9 projects, ₹234 Cr
+    Public Health Engineering Dept, Odisha       :   8 projects, ₹166 Cr
+    Arunodaya Infrastructure                     :   7 projects, ₹222 Cr
+    Lakshya Engineering & Construction           :   7 projects, ₹194 Cr
+    Mega Infrastructure Authority                :   7 projects, ₹410 Cr
+    Peninsular Petroleum Corporation             :   7 projects, ₹137 Cr
+
+============================================================
+QUALITY GATES
+============================================================
+  ✅ All quality gates passed
+
+✅ Database atomically saved to /Users/rigur_calypso/Desktop/BITS-Hackathon-Dataset-main/solution/knowledge_graph.db
+   Size: 7,438,336 bytes
+/Users/rigur_calypso/Desktop/BITS-Hackathon-Dataset-main/solution/run.py:101: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+============================================================
+PHASE 1: Extracting documents...
+============================================================
+
+============================================================
+PHASE 2: Building knowledge graph...
+============================================================
+
+============================================================
+PHASE 3: Fixing gradings from CC documents...
+============================================================
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  [LLM Extraction Error] 401 Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project. [reason: "ACCESS_TOKEN_TYPE_UNSUPPORTED"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "method"
+  value: "google.ai.generativelanguage.v1beta.GenerativeService.GenerateContent"
+}
+]
+  Fixed 5 gradings, 21 still missing
+
+✅ Pipeline complete!
+
+Answering 1 questions...
+  [LLM Entity Resolver] Resolved client: Irrigation & Waterways Dept, Govt of West Bengal
+  Fallback to LLM classification for: TEST-01
+  TEST-01: answer=3
+
+✅ Submission written to test_out.csv
+   1 answers
+✅ Answer audit written to test_out.audit.csv (1 unresolved)
