@@ -200,38 +200,12 @@ def answer_questions(questions_path: str, output_path: str, use_llm: bool = Fals
             
             # Custom deterministic fallback for adversarial questions
             if res.status in (query_engine.AnswerStatus.UNSUPPORTED, query_engine.AnswerStatus.NO_MATCH) or val == 0:
-
-                import custom_shapes
-                intent = query_engine.classify_question(q['question'], db)
-                intent = custom_shapes.register_custom_shapes(intent, q['question'].lower())
-                shape = intent.get('shape')
-                
-                if shape == 'collection_pct':
-                    val = custom_shapes.handle_collection_pct(db, intent)
-                elif shape == 'client_distinct_units':
-                    val = custom_shapes.handle_client_distinct_units(db, intent)
-                elif shape == 'gap_awarded_invoiced':
-                    val = custom_shapes.handle_gap_awarded_invoiced(db, intent)
-                elif shape == 'top_client_pct':
-                    val = custom_shapes.handle_top_client_pct(db, intent)
-                elif shape == 'shared_projects':
-                    val = custom_shapes.handle_shared_projects(db, intent, q['question'])
-                elif shape == 'top_two_clients_sum':
-                    val = custom_shapes.handle_top_two_clients_sum(db, intent)
-                elif shape == 'mean_minus_median':
-                    val = custom_shapes.handle_mean_minus_median(db, intent)
-                elif shape == 'year_difference':
-                    val = custom_shapes.handle_year_difference(db, intent)
-                elif shape in ['date_span', 'avg_work_size', 'distinct_count', 'role_split', 'threshold_aggregate', 'referenced_share', 'hop_aggregate', 'exclusion_aggregate', 'rank_value']:
-                    val_res = query_engine.answer_question_with_intent(q['question'], intent, db)
-                    val = val_res.value if hasattr(val_res, 'value') else (val_res if isinstance(val_res, (int, float)) else 0)
+                if use_llm:
+                    print(f"  Fallback to LLM classification for: {q['qid']}")
+                    val = llm_query_engine.answer_question(q['question'], db, model_name=model_name)
+                    if isinstance(val, tuple): val = val[0]
                 else:
-                    if use_llm:
-                        print(f"  Fallback to LLM classification for: {q['qid']}")
-                        val = llm_query_engine.answer_question(q['question'], db, model_name=model_name)
-                        if isinstance(val, tuple): val = val[0]
-                    else:
-                        val = 0
+                    val = 0
             
             qid = q['qid']
             ans_str = str(int(val)) if isinstance(val, float) and val.is_integer() else str(val)
