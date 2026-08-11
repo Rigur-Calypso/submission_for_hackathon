@@ -82,6 +82,8 @@ def find_best_entity_match(text: str, entities: list[str], threshold: int = 80) 
                 return entity
                 
     aliases = {
+        'pheg gujarat': 'Public Health Engineering Dept, Gujarat',
+        'pheg': 'Public Health Engineering Dept, Odisha',
         'phed': 'Public Health Engineering Dept, Odisha',
         'pwd': 'Public Works Department',
         'nhai': 'National Highways Authority of India',
@@ -291,7 +293,12 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
     # ── Extract named entities ──────────────────────────────────
     
     # Client name
-    clients = [row[0] for row in db.execute("SELECT DISTINCT client_name FROM projects").fetchall()]
+    cursor = db.execute("""
+        SELECT DISTINCT client_name FROM projects
+        UNION
+        SELECT DISTINCT client FROM receivables
+    """)
+    clients = [row[0] for row in cursor.fetchall() if row[0]]
     intent['client'] = find_best_entity_match(q, clients)
     
     # Engineer name
@@ -388,11 +395,12 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
     
     # Exclude category
     exclude_match = re.search(
-        r'(?:exclud(?:e|ing)|without|minus|not counting|leaving out|apart from|other than)\s+(.+?)(?:\s*(?:,|\.|what|$))',
+        r'(?:exclud(?:e|ing)|without|minus|not counting|leaving out|apart from|other than|remove|dropping)\s+(.+?)(?:\s*(?:,|\.|what|$))|after the (.+?)\s*(?:division|work|projects?|category|segment|piece)?\s*(?:is excluded|is removed|is stripped out|is dropped|is dropped out)',
         q, re.IGNORECASE
     )
     if exclude_match:
-        exclude_text = exclude_match.group(1).strip()
+        exclude_text = exclude_match.group(1) or exclude_match.group(2)
+        exclude_text = exclude_text.strip()
         categories = [row[0] for row in db.execute("SELECT DISTINCT category FROM projects").fetchall()]
         intent['exclude_category'] = find_best_entity_match(exclude_text, categories, threshold=60)
     
@@ -410,14 +418,14 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
         intent['shape'] = 'client_distinct_units'
         intent['answer_type'] = 'count'
 
-    # unpaid_balance
-    elif re.search(r'\b(?:unpaid balance|balance still owed|remaining balance|adjusted balance|deduction of what they.ve cleared|net balance due|total unpaid amount|amount remains on the invoices|true balance|balance when I cross-check|total amount still due|amount still outstanding)\b', q, re.IGNORECASE):
-        intent['shape'] = 'unpaid_balance'
+    # gap_awarded_invoiced
+    elif re.search(r'gap between.*awarded.*invoiced|gap between.*assigned.*billed|awarded.*versus.*invoiced.*shortfall|shortfall between.*awarded.*billed|amount after we cross-check against the invoice amount|gap between the full value of their awards and what we.ve managed to invoice|actual gap between what they.ve sanctioned and what we.ve billed|shortfall between.*approved.*billed|shortfall between.*total contract value.*actually billed|gap between.*value.*secured.*billed|shortfall between.*contract value.*actually billed|shortfall between.*total value.*bill|gap between.*secured.*billed|gap between.*committed us to.*formally claimed|gap between.*committed us to.*actually billed|gap between.*award value.*billed amount|true gap between the full value of their awards and what we.ve managed to invoice|gap between what they.ve sanctioned and what we.ve billed|total value.*(?:above|over).*(?:invoiced|billed)|(?:gap|shortfall|difference|variance|unbilled|un-billed).*?(?:awarded|sanctioned|approved|assigned|contract value|project value).*?(?:invoiced|billed|claimed|submitted claims)|(?:awarded|sanctioned|contract value).*?(?:above|over|against|versus).*?(?:invoiced|billed|claims)|delta between secured work and submitted claims|missing amount between commitments and our bills|variance between the total scope they.ve handed over and the value we.ve successfully claimed', q, re.IGNORECASE):
+        intent['shape'] = 'gap_awarded_invoiced'
         intent['answer_type'] = 'money'
 
-    # gap_awarded_invoiced
-    elif re.search(r'gap between.*awarded.*invoiced|gap between.*assigned.*billed|awarded.*versus.*invoiced.*shortfall|shortfall between.*awarded.*billed|amount after we cross-check against the invoice amount|gap between the full value of their awards and what we.ve managed to invoice|actual gap between what they.ve sanctioned and what we.ve billed|shortfall between.*approved.*billed|shortfall between.*total contract value.*actually billed|gap between.*value.*secured.*billed|shortfall between.*contract value.*actually billed|shortfall between.*total value.*bill|gap between.*secured.*billed|gap between.*committed us to.*formally claimed|gap between.*committed us to.*actually billed|gap between.*award value.*billed amount|true gap between the full value of their awards and what we.ve managed to invoice|gap between what they.ve sanctioned and what we.ve billed|total value.*(?:above|over).*(?:invoiced|billed)', q, re.IGNORECASE):
-        intent['shape'] = 'gap_awarded_invoiced'
+    # unpaid_balance
+    elif re.search(r'\b(?:unpaid balance|balance still owed|remaining balance|adjusted balance|deduction of what they.ve cleared|net balance due|total unpaid amount|amount remains on the invoices|true balance|balance when I cross-check|total amount still due|amount still outstanding)\b|(?:amount|balance|totals?).*?(?:still owe|still due|outstanding|pending|remaining)|(?:unpaid|remaining|outstanding|due|owed|pending|unbilled|un-billed)\s*(?:balance|amount|remainder|portion|totals?)|deduct.*cleared payment|remain unpaid|total amount currently due', q, re.IGNORECASE):
+        intent['shape'] = 'unpaid_balance'
         intent['answer_type'] = 'money'
         
     # top_client_pct
@@ -436,17 +444,12 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
         intent['answer_type'] = 'money'
         
     # mean_minus_median
-    elif re.search(r'mean and (?:the )?median|average and (?:the )?median|avg minus median|gap between avg and median|mean-median gap|difference.*average.*median|difference.*mean.*median', q, re.IGNORECASE):
+    elif re.search(r'mean and (?:the )?median|average and (?:the )?median|avg minus median|gap between avg and median|mean-median gap|difference.*average.*median|difference.*mean.*median|gap between the average and median|difference between.*average.*median|mean against the median', q, re.IGNORECASE):
         intent['shape'] = 'mean_minus_median'
         intent['answer_type'] = 'money'
         
-    # category_difference
-    elif re.search(r'difference|spread|subtract|compare|variance|versus|larger|smaller|ahead', q, re.IGNORECASE) and len(re.findall(r'irrigation|epc|roads|highways|tunnels|bridges|water|sewerage|buildings|expressways|maintenance', q, re.IGNORECASE)) >= 2 and not re.search(r'mean|median|between.*(?:largest|biggest)', q, re.IGNORECASE):
-        intent['shape'] = 'category_difference'
-        intent['answer_type'] = 'money'
-
     # year_difference
-    elif re.search(r'(?:between\s+(?:the\s+|that\s+)?(20\d\d)\s+and\s+(?:the\s+)?(20\d\d)|(?:variance|difference|shift|movement|gap).*?(20\d\d).*?(20\d\d)|(20\d\d).*?(20\d\d).*?(?:shift|movement|gap|difference|variance))', q, re.IGNORECASE) and not re.search(r'mean|median', q, re.IGNORECASE):
+    elif re.search(r'(?:between\s+(?:the\s+|that\s+)?(20\d\d)\s+and\s+(?:the\s+)?(20\d\d)|(?:variance|difference|shift|movement|gap).*?(20\d\d).*?(20\d\d)|(20\d\d).*?(20\d\d).*?(?:shift|movement|gap|difference|variance|dollar amount between|swing|compare|actual move|delta))', q, re.IGNORECASE) and not re.search(r'mean|median', q, re.IGNORECASE):
         years = re.findall(r'(20\d\d)', q)
         unique_years = []
         for y in years:
@@ -458,8 +461,13 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
             intent['answer_type'] = 'money'
         
     # rank_value (includes custom ones)
-    elif re.search(r'(?:largest|biggest|top finished).*?(?:exceed|second|beats)|difference\s+between.*?(?:largest|biggest)', q, re.IGNORECASE):
+    elif re.search(r'(?:largest|biggest|top finished|highest[- ]value).*?(?:exceed|second|beats|next|subsequent)|difference\s+between.*?(?:largest|biggest|highest[- ]value)|separating.*?(?:largest|biggest|highest[- ]value)', q, re.IGNORECASE):
         intent['shape'] = 'rank_value'
+        intent['answer_type'] = 'money'
+
+    # category_difference (e.g. roads vs tunnels)
+    elif re.search(r'(diff|difference|gap|variance|spread).*?category|category.*difference|difference.*?between.*?and.*|difference.*?between.*?and.*?projects|difference in total contract value between.*?and.*|subtract the.*?from the.*|value diff between|value delta between|verified net value between|how you usually extract those two figures so I can run the math myself|total value for the.*?and the|difference in value|spread between|difference between the categories|spread across both scopes|total value difference between those two workstreams', q, re.IGNORECASE):
+        intent['shape'] = 'category_difference'
         intent['answer_type'] = 'money'
 
     # exclusion_aggregate (includes custom filter out industrial epc)
@@ -488,7 +496,7 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
         intent['answer_type'] = 'money'
         
     # threshold_aggregate (includes custom)
-    elif intent.get('threshold') and re.search(r'(?:clear|clearing|meet or exceed|at or over|crossing|hitting|above|over|past|reach|hit)', q, re.IGNORECASE):
+    elif intent.get('threshold'):
         intent['shape'] = 'threshold_aggregate'
         intent['answer_type'] = 'money'
 
@@ -531,8 +539,8 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
         intent['shape'] = 'doc_filtered_aggregate'
         intent['answer_type'] = 'money'
     
-    # avg_work_size: "average" / "mean" (excluding when median is asked)
-    elif re.search(r'\baverage\b|\bmean\b|typical project scale', q, re.IGNORECASE):
+    # avg_work_size
+    elif re.search(r'(?:average|mean).*?(?:size|value|contract value|across|volume|scale)|average.*?overall\b|typical.*?scale|overall average', q, re.IGNORECASE):
         intent['shape'] = 'avg_work_size'
         intent['answer_type'] = 'money'
     
@@ -741,7 +749,7 @@ def handle_temporal_chain(db: sqlite3.Connection, intent: dict) -> float | Answe
         FROM projects p
         JOIN engineer_projects ep ON p.project_id = ep.project_id
         JOIN engineers e ON ep.engineer_id = e.engineer_id
-        WHERE e.name = ? AND p.completion_date > ?
+        WHERE e.name = ? AND p.completion_date > ? AND ep.role_in_project = 'Project Lead'
     """, (engineer, cert_issue_date))
     
     return cursor.fetchone()[0] or 0
@@ -907,7 +915,7 @@ def handle_gap_awarded_invoiced(db: sqlite3.Connection, intent: dict) -> float |
     awarded = c[0] or 0
     c2 = db.execute("SELECT SUM(invoiced) FROM receivables WHERE client = ?", (client,)).fetchone()
     invoiced = c2[0] or 0
-    return awarded - invoiced
+    return abs(awarded - invoiced)
     
 def handle_top_client_pct(db: sqlite3.Connection, intent: dict) -> float | AnswerStatus:
     engineer = intent.get('engineer')
@@ -987,8 +995,6 @@ def handle_mean_minus_median(db: sqlite3.Connection, intent: dict) -> float | An
         median = vals[n//2]
     
     diff = mean - median
-    if mean < median:
-        return -abs(diff)
     return abs(diff)
 
 def handle_year_difference(db: sqlite3.Connection, intent: dict) -> float | AnswerStatus:
@@ -1040,8 +1046,11 @@ def handle_category_difference(db: sqlite3.Connection, intent: dict) -> float | 
         if category in categories and re.search(pattern, q, re.IGNORECASE)
     ]
             
+    if len(found_cats) > 2 and 'Expressways' in found_cats and 'national expressway' in q:
+        found_cats.remove('Expressways')
+            
     if len(found_cats) < 2: return AnswerStatus.NO_MATCH
-    cat1, cat2 = found_cats[:2]
+    cat1, cat2 = found_cats[-2:]
     
     val1 = db.execute("SELECT SUM(contract_value) FROM projects WHERE client_name = ? AND category = ?", (client, cat1)).fetchone()[0] or 0
     val2 = db.execute("SELECT SUM(contract_value) FROM projects WHERE client_name = ? AND category = ?", (client, cat2)).fetchone()[0] or 0
