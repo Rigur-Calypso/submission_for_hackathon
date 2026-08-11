@@ -1,0 +1,54 @@
+Total zeros: 53
+HV-IC-0038: I’m still learning the ropes on our billing side, but while going through the Six Sigma Black Belt file for Uma Sen’s School Building — Delhi Pkg-154 assignment, what percentage out of 100 has actually cleared against the total billed for that client?
+HV-IC-0041: That number for the UP irrigation account looks too clean, so what's the actual gap between what they've sanctioned and what we've billed?
+HV-IC-0044: imran joshi six sigma black belt project, what’s the rupee gap between avg and median, negative if avg dips?
+HV-IC-0061: Subarnarekha Valley Corporation shows works we have awarded, so what is the amount after we cross-check against the invoice amount?
+HV-IC-0073: What percentage out of 100 collected aligns with the billed amounts for the Farhan Khan PMP on Highway Construction — Rajasthan Pkg-77 versus the invoiced totals?
+HV-IC-0085: I’m pretty sure Suvarna Projects Limited’s work completed value was sitting near 380 crores back in 2018, but I want to verify my recollection—what’s the actual variance between that 2018 number and their 2021 figure?
+HV-IC-0095: National Expressway Development Authority — what’s the out-of-100 figure for the projects that have a testimonial, as I need it locked in before the submission deadline?
+HV-IC-0121: I’ve got the March 10th PMP for Meera on the Jharkhand Pkg-29 ROB assignment, but the usual gap doesn’t add up—could you run the actual count from that certification date to the final completion mark?
+HV-IC-0122: National Expressway Development Authority’s 2017 completed work value is a bit fuzzy in my memory, but I want to confirm my impression—what’s the actual gap between that 2017 figure and their 2021 total?
+HV-IC-0127: I’m up against a submission deadline for the Irrigation & Waterways Dept, Govt of West Bengal, so what’s the outstanding contract value we still need to secure from them to clear the 120 Cr credential threshold?
+HV-IC-0178: sanjay joshi's pmp: what's the rupee mean-median gap for his client's works, negative if mean is lower?
+HV-IC-0198: Arunodaya Infrastructure is pulling up a number that doesn’t seem right, so could you actually work out the true gap between the full value of their awards and what we’ve managed to invoice?
+HV-IC-0228: Could you verify the finalized completed work valuations for Mega Infrastructure Authority in both 2014 and 2025 so I can reconcile the period-over-period shift for the audit file?
+HV-IC-0244: pritis pmp hit mar 10 2021 for the west bengal hospital block, how many days to wrap up?
+HV-IC-0253: Hey, I’m still getting my bearings with the bid workflow — for the Maharashtra PWD projects, what’s the whole number out of a hundred that represents the portion of our work backed by a client reference?
+HV-IC-0287: The draft figure circulating looks off—can you walk me through the actual derived gap between Mega Infrastructure Authority's 2010 baseline and 2018 completed work totals?
+HV-IC-0289: Suvarna Projects Limited, 2012 and 2014—what’s the movement in completed work so I can lock the bid before the 5 PM cutoff?
+HV-IC-0293: Peninsular Petroleum Corporation, 2019 versus 2021—I’m pretty sure the completed work value shifted by a solid margin, but I’m not entirely confident in my memory, so could you confirm whether my recollection is right and what the actual difference is?
+HV-IC-0295: What’s the verified gap between the National Special Projects Office 2013 completed work total and the 2025 figure that I should lock in?
+HV-IC-0314: I noticed the initial count for Mega Infrastructure Authority, but that seems off, so could you actually work out the share of our projects with them that carry a client sign-off and just give me the final whole number out of a hundred?
+HV-IC-0316: I’m still getting my bearings with the Jal Nigam UP file here—could you let me know the net difference in completed work value between 2011 and 2018?
+HV-IC-0333: pmp; naveen roy. need rupee gap between average and median values for that client's work, negative if average lower?
+HV-IC-0347: Meridian Constructors & Co. looks like it’s just showing a raw count, so could you actually calculate the share of those assignments that came with a client endorsement and just give me the final whole number out of a hundred?
+HV-IC-0357: for odisha phed, what’s the out of 100 figure for projects with client approval?
+HV-IC-0361: Regarding the PMP for Neha Chopra on ROB — Delhi Pkg-36, could you please confirm what percentage out of 100 of the total billed amount has actually been collected for the client?
+HV-IC-0371: Public Health Engineering Dept, Odisha has awarded us a few projects, but am I right that my recollection is correct about how much of the total value is still sitting above what we’ve actually invoiced?
+HV-IC-0386: I'm still getting my bearings with the Trishakti account, but could you quickly check the heavier contracts clearing the twenty-five crore mark and let me know what they add up to?
+HV-IC-0389: Trishakti Power Generation Corporation lists assignments on my end, so when I cross-check those against endorsements, what is the out of 100 figure for the portion that cleared?
+HV-IC-0391: I know we flagged the Irrigation & Waterways Dept, Govt of Uttar Pradesh account as fully billed, but the system balance looks too high—can you actually run the deduction of what they’ve cleared so far versus what’s still sitting on our books?
+HV-IC-0392: Quick question while I'm grabbing this—since I'm still learning the ropes, could you tell me the total amount still owed by Subarnarekha Valley Corporation for all the invoices we've submitted to them?
+HV-IC-0394: pwd gujarat, we sent all the bills, but what’s the actual remaining balance still on their end?
+HV-IC-0396: Arunodaya Infrastructure shows a preliminary figure, but that doesn't account for the payments we've actually cleared against those billed amounts—can you run the adjusted balance after all those credits are applied?
+HV-IC-0397: I’m still getting my bearings with the Irrigation & Waterways Dept, Govt of Rajasthan file, so could you tell me what the total unpaid balance is across all the invoices we’ve submitted?
+HV-IC-0399: What is the exact unpaid balance across all the billing entries we have submitted for the Mega Infrastructure Authority account?
+HV-IC-0400: Gujarat Municipal Corporation is the client we have invoiced, and could you please confirm the total amount still outstanding across those invoices?
+HV-IC-0401: Cross-checking the Central Works & Buildings Bureau account, what is the balance still owed across the invoices?
+HV-IC-0404: What is the precise net balance due for the Public Works Department, Govt of Tamil Nadu across all billed amounts?
+HV-IC-0405: National Expressway Development Authority, what’s the total unpaid amount across all the invoices we’ve sent them?
+HV-IC-0408: Public Works Department, Govt of West Bengal, what amount remains on the invoices we are cross-checking?
+HV-IC-0409: Mahanadi Steel Corporation was flagged with that initial tally, but that number clearly doesn't account for the actual payments they've made, so what's the true balance still on our books?
+HV-IC-0410: Jal Nigam, Gujarat, what is the balance when I cross-check invoices against the payment system?
+HV-IC-0412: Maharashtra Municipal Corporation has multiple invoices on file, so could you please calculate the total amount still due across all of them?
+HV-IC-0420: I’m fairly certain our Mahanadi Steel Corporation roads and highways contract was worth more than the water treatment package we took on for them, but could you quickly verify if my recollection is right on the actual difference in value?
+HV-IC-0421: Can you quickly calculate the difference between our irrigation and sewerage drainage scopes for Suvarna Projects Limited before the submission deadline?
+HV-IC-0429: That quick tally for the National Special Projects Office feels off—could you work out the actual difference between our expressways and irrigation commitments for them?
+HV-IC-0434: Could you confirm the audited spread between the roads maintenance and water treatment scopes we’ve delivered for Mahanadi Steel Corporation?
+HV-IC-0443: Suvarna Projects Limited irrigation and roads highways figures, cross-checking against the ledger, what is the difference between the categories?
+HV-IC-0444: Jharkhand Municipal Corporation bridges flyovers versus roads maintenance, I keep seeing a flat rate quoted but that can’t be right—what’s the actual spread across both scopes?
+HV-IC-0453: Just trying to confirm my memory on the Jal Nigam account in Gujarat—am I right that the total value for our bridges and flyovers work sits ahead of the tunnels work, and could you remind me what the difference is?
+HV-IC-0456: I’m fairly certain the Suvarna Projects Limited bid has us ahead on the roads and highways side compared to the tunnels, but could you just check if my recollection is right about the exact total value difference between those two workstreams?
+HV-IC-0463: Hey, on the NEDA file, once I’ve tallied the industrial epc and irrigation totals, is the standard way to get the final spread just to subtract the irrigation figure from the epc one?
+HV-IC-0464: That quick tally for the Public Works Department account feels off, so once you’ve actually run the irrigation totals against the roads and highways spend, what’s the real difference between them?
+HV-IC-0468: Could you send over the total contract values for Trishakti’s large bridges and water supply projects so I can see how they compare?
