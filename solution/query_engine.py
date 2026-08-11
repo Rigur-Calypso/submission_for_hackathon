@@ -123,7 +123,7 @@ def find_best_entity_match(text: str, entities: list[str], threshold: int = 80) 
     return scored_matches[0][1]
 
 
-def extract_project_from_question(question: str, db: sqlite3.Connection) -> str | None:
+def extract_project_from_question(question: str, db: sqlite3.Connection, engineer: str | None = None) -> str | None:
     """Extract project name from question text using fuzzy matching against the database."""
     import re
     from rapidfuzz import fuzz
@@ -142,21 +142,40 @@ def extract_project_from_question(question: str, db: sqlite3.Connection) -> str 
     cursor = db.execute("SELECT project_name FROM projects")
     all_projects = [row[0] for row in cursor.fetchall()]
     
+    eng_projects = set()
+    if engineer:
+        cursor = db.execute("""
+            SELECT p.project_name FROM projects p
+            JOIN engineer_projects ep ON p.project_id = ep.project_id
+            JOIN engineers e ON ep.engineer_id = e.engineer_id
+            WHERE e.name = ?
+        """, (engineer,))
+        eng_projects = set(row[0] for row in cursor.fetchall())
+    
     q_norm = normalize(question)
-    best_match = None
-    best_score = 0
+    best_matches = []
     
     for project in all_projects:
         proj_norm = normalize(project)
         if not proj_norm: continue
         # use token_set_ratio to handle missing/scrambled words like "madhya pradesh water plant"
         score = fuzz.token_set_ratio(proj_norm, q_norm)
-        if score > best_score:
-            best_score = score
-            best_match = project
+        if score >= 60:
+            best_matches.append((score, project))
             
-    if best_score >= 60:  # Allow relatively low threshold because questions heavily abbreviate
-        return best_match
+    if best_matches:
+        # Sort by score descending, then by whether it's an engineer project
+        best_matches.sort(key=lambda x: (x[0], x[1] in eng_projects), reverse=True)
+        top_match = best_matches[0][1]
+        
+        # If the top match is NOT an eng project, but there is an eng project with same base name
+        if engineer and top_match not in eng_projects:
+            top_base = re.sub(r'\s*(?:—|-)?\s*Pkg-\d+', '', top_match, flags=re.IGNORECASE).strip()
+            for ep in eng_projects:
+                ep_base = re.sub(r'\s*(?:—|-)?\s*Pkg-\d+', '', ep, flags=re.IGNORECASE).strip()
+                if top_base.lower() == ep_base.lower():
+                    return ep
+        return top_match
         
     return None
 
@@ -171,7 +190,7 @@ def extract_date_from_question(question: str) -> str | None:
     # Verbose: "March 10, 2021", "Mar 10 2021", or "10th March, 2021".
     # The hidden questions use both full and abbreviated month names.
     m = re.search(
-        r'((?:\d{1,2}(?:st|nd|rd|th)?\s+)?(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{1,2},?\s+\d{4}|\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?),?\s+\d{4})',
+        r'((?:\d{1,2}(?:st|nd|rd|th)?\s+)?(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}|\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?),?\s+\d{4})',
         question, re.IGNORECASE
     )
     if m:
@@ -279,8 +298,41 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
     engineers = [row[0] for row in db.execute("SELECT DISTINCT name FROM engineers").fetchall()]
     intent['engineer'] = find_best_entity_match(q, engineers)
     
-    # Project name
-    intent['project'] = extract_project_from_question(q, db)
+    # First name fallback if no full name match
+    if not intent.get('engineer'):
+        first_name_matches = []
+        for eng in engineers:
+            fn = eng.split()[0].lower()
+            if re.search(rf'\b{fn}(?:\'?s)?\b', q, re.IGNORECASE):
+                first_name_matches.append(eng)
+                
+        if len(first_name_matches) == 1:
+            intent['engineer'] = first_name_matches[0]
+        elif len(first_name_matches) > 1:
+            # We have multiple matches (e.g. Meera Roy, Meera Chatterjee)
+            # Try to disambiguate using the project if we can find it
+            temp_project = extract_project_from_question(q, db)
+            if temp_project:
+                pkg_match = re.search(r'Pkg-(\d+)', temp_project, re.IGNORECASE)
+                if pkg_match:
+                    pkg_num = int(pkg_match.group(1))
+                    cursor = db.execute("""
+                        SELECT e.name FROM engineers e
+                        JOIN engineer_projects ep ON e.engineer_id = ep.engineer_id
+                        JOIN projects p ON ep.project_id = p.project_id
+                        WHERE p.pkg_number = ?
+                    """, (pkg_num,))
+                    assigned = [row[0] for row in cursor.fetchall()]
+                    for candidate in first_name_matches:
+                        if candidate in assigned:
+                            intent['engineer'] = candidate
+                            break
+            # If still not disambiguated, pick first
+            if not intent.get('engineer'):
+                intent['engineer'] = first_name_matches[0]
+                
+    # Project name (now can use disambiguated engineer)
+    intent['project'] = extract_project_from_question(q, db, intent['engineer'])
     
     # Cert type
     if 'pmp' in q:
@@ -515,13 +567,7 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
         if 'assignment' in q.lower() or 'project' in q.lower() or 'work' in q.lower() or 'portfolio' in q.lower():
             intent['table_focus'] = 'projects'
 
-    if not intent.get('engineer'):
-        first_names = {'priya': 'Priya Patel', 'tanvir': 'Tanvir Menon', 'sunita': 'Sunita Deshmukh', 'neha': 'Neha Chopra', 'chandan': 'Chandan Banerjee', 'amit': 'Amit Iyer', 'farhan': 'Farhan Rao', 'naveen': 'Naveen Roy', 'lakshmi': 'Lakshmi Ghosh', 'priti': 'Priti Sharma', 'suresh': 'Suresh Das', 'meera': 'Meera Roy'}
-        for fn, full in first_names.items():
-            if re.search(rf'\b{fn}\b', q, re.IGNORECASE) or re.search(rf'\b{fn}\'s\b', q, re.IGNORECASE):
-                intent['engineer'] = full
-                break
-                
+
     return intent
 
 
