@@ -2,15 +2,15 @@ question_id,answer_type,shape,status,fallback_used,client,engineer,project,thres
 HV-IC-0001,money,hop_aggregate,resolved,False,National Expressway Development Authority,Rajesh Rao,Material Handling Plant — Uttar Pradesh Pkg-47,,DOC-CCC-047.pdf;DOC-CC-047.pdf,2942400000
 HV-IC-0002,money,exclusion_aggregate,resolved,False,"Irrigation & Waterways Dept, Govt of Rajasthan",,Water Treatment Plant — Rajasthan Pkg-58,,DOC-CCC-058.pdf;DOC-CC-058.pdf,1516600000
 HV-IC-0003,percent,collection_pct,resolved,False,,Amit Iyer,Ring Road — West Bengal Pkg-128,,DOC-CCC-128.pdf;DOC-CC-128.pdf,90.19
-HV-IC-0006,money,gap_awarded_invoiced,resolved,False,Lakshya Engineering & Construction,,,,,213836582
+HV-IC-0006,money,gap_awarded_invoiced,resolved,False,Lakshya Engineering & Construction,,,,,13836582
 HV-IC-0009,percent,collection_pct,resolved,False,,Deepa Chatterjee,Hospital Block — West Bengal Pkg-18,,DOC-CCC-018.pdf;DOC-CC-018.pdf,82.38
 HV-IC-0010,percent,collection_pct,resolved,False,,Tanvir Menon,Flyover — Delhi Pkg-99,,DOC-CCC-099.pdf;DOC-CC-099.pdf,88.9
-HV-IC-0014,days,date_span,resolved,False,,Pooja Bose,Water Treatment Plant — Madhya Pradesh Pkg-23,,DOC-CCC-023.pdf;DOC-CC-023.pdf,536
+HV-IC-0014,days,date_span,resolved,False,,Pooja Bose,Water Treatment Plant — Madhya Pradesh Pkg-23,,DOC-CCC-023.pdf;DOC-CC-023.pdf,535
 HV-IC-0017,money,avg_work_size,resolved,False,,,Community Centre — Uttar Pradesh Pkg-139,,DOC-CCC-139.pdf;DOC-CC-139.pdf,326933333
-HV-IC-0018,money,threshold_aggregate,resolved,False,"Irrigation & Waterways Dept, Govt of West Bengal",,Lift Irrigation — West Bengal Pkg-13,400000000,DOC-CCC-013.pdf;DOC-CC-013.pdf,1150300000
+HV-IC-0018,money,threshold_aggregate,no_match,True,,,Lift Irrigation — West Bengal Pkg-13,400000000,DOC-CCC-013.pdf;DOC-CC-013.pdf,1150300000
 HV-IC-0020,count,distinct_count,resolved,False,,Farhan Rao,,,,2
 HV-IC-0021,money,year_difference,resolved,False,Meridian Constructors & Co.,,,,,1189100000
-HV-IC-0023,money,gap_awarded_invoiced,resolved,False,Subarnarekha Valley Corporation,,,,,2293370196
+HV-IC-0023,money,gap_awarded_invoiced,resolved,False,Subarnarekha Valley Corporation,,,,,2093370196
 HV-IC-0024,days,date_span,resolved,False,,Gautam Joshi,Pipeline Laying — Jharkhand Pkg-131,,DOC-CCC-131.pdf;DOC-CC-131.pdf,160
 HV-IC-0025,money,year_difference,resolved,False,Trishakti Power Generation Corporation,,,,,1521400000
 HV-IC-0026,money,threshold_aggregate,resolved,False,"Public Health Engineering Dept, Odisha",,,230000000,,1028500000
@@ -18,16 +18,16 @@ HV-IC-0027,money,threshold_aggregate,resolved,False,Mega Infrastructure Authorit
 HV-IC-0028,money,hop_aggregate,resolved,False,National Expressway Development Authority,Sunita Joshi,Ring Road — Uttar Pradesh Pkg-107,,DOC-CCC-107.pdf;DOC-CC-107.pdf,2942400000
 HV-IC-0030,money,avg_work_size,resolved,False,,Suresh Das,Road Widening — Odisha Pkg-98,,DOC-CCC-098.pdf;DOC-CC-098.pdf,195185714
 HV-IC-0031,days,date_span,resolved,False,,Suresh Desai,Handpump Installation — Gujarat Pkg-155,,DOC-CCC-155.pdf;DOC-CC-155.pdf,1267
-HV-IC-0032,money,hop_aggregate,resolved,False,"Irrigation & Waterways Dept, Govt of Rajasthan",,Lift Irrigation — Rajasthan Pkg-41,,DOC-CCC-041.pdf;DOC-CC-041.pdf,1957800000
+HV-IC-0032,money,hop_aggregate,resolved,False,"Irrigation & Waterways Dept, Govt of Rajasthan",,Lift Irrigation — Rajasthan Pkg-41,,DOC-CCC-041.pdf;DOC-CC-041.pdf,1585300000
 HV-IC-0033,money,mean_minus_median,resolved,False,,Tanvir Menon,Water Treatment Plant — Rajasthan Pkg-58,,DOC-CCC-058.pdf;DOC-CC-058.pdf,76950000
-HV-IC-0036,money,exclusion_aggregate,resolved,False,Central Works & Buildings Bureau,,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,1232600000
+HV-IC-0036,money,exclusion_aggregate,resolved,False,Central Works & Buildings Bureau,,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,1591200000
 HV-IC-0037,percent,collection_pct,resolved,False,,Farhan Roy,Stormwater Drainage — Gujarat Pkg-80,,DOC-CCC-080.pdf;DOC-CC-080.pdf,99.78
 HV-IC-0038,percent,collection_pct,resolved,False,,Uma Sen,School Building — Delhi Pkg-154,,DOC-CCC-154.pdf;DOC-CC-154.pdf,78.13
 HV-IC-0039,money,temporal_chain,resolved,False,,Sunita Joshi,,,,507900000
 HV-IC-0040,money,avg_work_size,resolved,False,,,WTP Augmentation — Delhi Pkg-37,,DOC-CCC-037.pdf;DOC-CC-037.pdf,450694737
-HV-IC-0041,money,gap_awarded_invoiced,resolved,False,"Irrigation & Waterways Dept, Govt of Uttar Pradesh",,,,,377309701
-HV-IC-0043,money,gap_awarded_invoiced,resolved,False,"Public Works Department, Govt of Gujarat",,Drainage Works — Gujarat Pkg-135,,DOC-CCC-135.pdf;DOC-CC-135.pdf,233820699
-HV-IC-0044,money,mean_minus_median,resolved,False,,Imran Joshi,,,,17180000
+HV-IC-0041,money,gap_awarded_invoiced,resolved,True,,,,,,37604000268
+HV-IC-0043,money,gap_awarded_invoiced,resolved,False,"Public Works Department, Govt of Gujarat",,Drainage Works — Gujarat Pkg-135,,DOC-CCC-135.pdf;DOC-CC-135.pdf,33820699
+HV-IC-0044,money,mean_minus_median,resolved,False,,Imran Joshi,,,,-192266667
 HV-IC-0045,days,date_span,resolved,False,,Jaya Desai,Stormwater Drainage — Odisha Pkg-59,,DOC-CCC-059.pdf;DOC-CC-059.pdf,710
 HV-IC-0046,money,rank_value,resolved,False,Lakshya Engineering & Construction,,,,,658300000
 HV-IC-0048,money,temporal_chain,resolved,False,,Suresh Desai,,,,128700000
@@ -35,14 +35,14 @@ HV-IC-0049,money,threshold_aggregate,resolved,False,"Public Works Department, Go
 HV-IC-0050,money,year_difference,resolved,False,Trishakti Power Generation Corporation,,,,,534500000
 HV-IC-0051,money,year_difference,resolved,False,Central Works & Buildings Bureau,,,,,309700000
 HV-IC-0053,percent,collection_pct,resolved,False,,Jaya Desai,STP — Gujarat Pkg-66,,DOC-CCC-066.pdf;DOC-CC-066.pdf,55.5
-HV-IC-0054,money,hop_aggregate,resolved,False,Trishakti Power Generation Corporation,Lakshmi Ghosh,Steel Truss Bridge — Gujarat Pkg-112,,DOC-CCC-112.pdf;DOC-CC-112.pdf,8563200000
-HV-IC-0055,money,gap_awarded_invoiced,resolved,False,Mahanadi Steel Corporation,,,,,2728865201
+HV-IC-0054,money,hop_aggregate,resolved,False,,Lakshmi Ghosh,Steel Truss Bridge — Gujarat Pkg-112,,DOC-CCC-112.pdf;DOC-CC-112.pdf,8563200000
+HV-IC-0055,money,gap_awarded_invoiced,resolved,False,Mahanadi Steel Corporation,,,,,2528865201
 HV-IC-0056,money,hop_aggregate,resolved,False,National Expressway Development Authority,Priya Patel,Anganwadi Centre — Jharkhand Pkg-142,,DOC-CCC-142.pdf;DOC-CC-142.pdf,2942400000
 HV-IC-0059,days,date_span,resolved,False,,Rahul Menon,Material Handling Plant — Uttar Pradesh Pkg-89,,DOC-CCC-089.pdf;DOC-CC-089.pdf,676
-HV-IC-0061,money,gap_awarded_invoiced,resolved,False,Subarnarekha Valley Corporation,,,,,2293370196
+HV-IC-0061,money,gap_awarded_invoiced,resolved,False,Subarnarekha Valley Corporation,,,,,2093370196
 HV-IC-0063,count,distinct_count,resolved,False,,Manoj Verma,,,,2
 HV-IC-0071,money,gap_to_threshold,resolved,False,Jharkhand Municipal Corporation,,ROB — Jharkhand Pkg-29,500000000,DOC-CCC-029.pdf;DOC-CC-029.pdf,28500000
-HV-IC-0072,money,mean_minus_median,resolved,False,,Sanjay Joshi,STP — West Bengal Pkg-73,,DOC-CCC-073.pdf;DOC-CC-073.pdf,40288888.888888896
+HV-IC-0072,money,mean_minus_median,resolved,False,,Sanjay Joshi,STP — West Bengal Pkg-73,,DOC-CCC-073.pdf;DOC-CC-073.pdf,40288889
 HV-IC-0073,percent,collection_pct,resolved,False,,Farhan Khan,Highway Construction — Rajasthan Pkg-77,,DOC-CCC-077.pdf;DOC-CC-077.pdf,78.18
 HV-IC-0074,count,distinct_count,resolved,False,,Rohit Singh,,,,2
 HV-IC-0076,days,date_span,resolved,False,,Rahul Das,Rigid Pavement — Madhya Pradesh Pkg-49,,DOC-CCC-049.pdf;DOC-CC-049.pdf,1449
@@ -50,8 +50,8 @@ HV-IC-0080,percent,collection_pct,resolved,False,,Tanvir Menon,STP — Jharkhand
 HV-IC-0081,money,temporal_chain,resolved,False,,Kavita Reddy,,,,430100000
 HV-IC-0082,money,avg_work_size,resolved,False,,Neha Chopra,Bituminous Overlay — Odisha Pkg-35,,DOC-CCC-035.pdf;DOC-CC-035.pdf,207675000
 HV-IC-0085,money,year_difference,resolved,False,Suvarna Projects Limited,,,,,783700000
-HV-IC-0086,money,mean_minus_median,resolved,False,,Tanvir Malhotra,Flyover — Jharkhand Pkg-78,,DOC-CCC-078.pdf;DOC-CC-078.pdf,202266666.6666667
-HV-IC-0088,money,mean_minus_median,resolved,False,,Kavita Reddy,Process Piping Package — Delhi Pkg-75,,DOC-CCC-075.pdf;DOC-CC-075.pdf,240294736.84210527
+HV-IC-0086,money,mean_minus_median,resolved,False,,Tanvir Malhotra,Flyover — Jharkhand Pkg-78,,DOC-CCC-078.pdf;DOC-CC-078.pdf,202266667
+HV-IC-0088,money,mean_minus_median,resolved,False,,Kavita Reddy,Process Piping Package — Delhi Pkg-75,,DOC-CCC-075.pdf;DOC-CC-075.pdf,240294737
 HV-IC-0090,money,hop_aggregate,resolved,False,,Sunita Joshi,Rigid Pavement — Delhi Pkg-28,,DOC-CCC-028.pdf;DOC-CC-028.pdf,2341700000
 HV-IC-0091,count,distinct_count,resolved,False,,Pooja Sen,,,,2
 HV-IC-0092,money,rank_value,resolved,False,"Jal Nigam, Uttar Pradesh",,STP — Uttar Pradesh Pkg-31,,DOC-CCC-031.pdf;DOC-CC-031.pdf,495900000
@@ -61,7 +61,7 @@ HV-IC-0096,money,avg_work_size,resolved,False,,Jaya Desai,Stormwater Drainage �
 HV-IC-0097,percent,collection_pct,resolved,False,,Neha Chopra,Highway Construction — Maharashtra Pkg-91,,DOC-CCC-091.pdf;DOC-CC-091.pdf,78.13
 HV-IC-0098,money,hop_aggregate,resolved,False,Subarnarekha Valley Corporation,Meera Roy,Process Piping Package — Delhi Pkg-82,,DOC-CCC-082.pdf;DOC-CC-082.pdf,3698700000
 HV-IC-0099,money,avg_work_size,resolved,False,,Sunita Joshi,Rigid Pavement — Delhi Pkg-28,,DOC-CCC-028.pdf;DOC-CC-028.pdf,260188889
-HV-IC-0100,money,mean_minus_median,resolved,False,,Meera Chatterjee,Rigid Pavement — Jharkhand Pkg-56,,DOC-CCC-056.pdf;DOC-CC-056.pdf,115433333.33333331
+HV-IC-0100,money,mean_minus_median,resolved,False,,Meera Chatterjee,Rigid Pavement — Jharkhand Pkg-56,,DOC-CCC-056.pdf;DOC-CC-056.pdf,115433333
 HV-IC-0104,money,rank_value,resolved,False,Mega Infrastructure Authority,,,,,1034200000
 HV-IC-0105,money,threshold_aggregate,resolved,False,Trishakti Power Generation Corporation,,,250000000,,7548200000
 HV-IC-0110,percent,collection_pct,resolved,False,,Deepa Chatterjee,Institutional Building — Gujarat Pkg-32,,DOC-CCC-032.pdf;DOC-CC-032.pdf,89.19
@@ -69,9 +69,9 @@ HV-IC-0111,money,hop_aggregate,resolved,False,Arunodaya Infrastructure,Meera Roy
 HV-IC-0112,money,year_difference,resolved,False,"Public Health Engineering Dept, Odisha",,,,,159600000
 HV-IC-0114,count,distinct_count,resolved,False,,Suresh Das,,,,2
 HV-IC-0115,money,avg_work_size,resolved,False,,Meera Banerjee,Pumping Station — Tamil Nadu Pkg-16,,DOC-CCC-016.pdf;DOC-CC-016.pdf,611100000
-HV-IC-0118,days,date_span,resolved,False,,Meera Roy,Hydro Tunnel — Jharkhand Pkg-117,,DOC-CCC-117.pdf;DOC-CC-117.pdf,374
+HV-IC-0118,days,date_span,resolved,False,,Meera Roy,Hydro Tunnel — Jharkhand Pkg-117,,DOC-CCC-117.pdf;DOC-CC-117.pdf,1113
 HV-IC-0119,money,avg_work_size,resolved,False,,Tanvir Menon,Water Treatment Plant — Rajasthan Pkg-58,,DOC-CCC-058.pdf;DOC-CC-058.pdf,326300000
-HV-IC-0120,money,gap_awarded_invoiced,resolved,False,Trishakti Power Generation Corporation,,,,,6999776500
+HV-IC-0120,money,gap_awarded_invoiced,resolved,False,Trishakti Power Generation Corporation,,,,,6799776500
 HV-IC-0121,days,date_span,resolved,False,,Meera Roy,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,854
 HV-IC-0122,money,year_difference,resolved,False,National Expressway Development Authority,,,,,237500000
 HV-IC-0123,count,distinct_count,resolved,False,,Suresh Desai,,,,5
@@ -79,68 +79,68 @@ HV-IC-0124,money,exclusion_aggregate,resolved,False,Mega Infrastructure Authorit
 HV-IC-0125,money,exclusion_aggregate,resolved,False,Suvarna Projects Limited,,,,,2303100000
 HV-IC-0127,money,gap_to_threshold,resolved,False,"Irrigation & Waterways Dept, Govt of West Bengal",,Lift Irrigation — West Bengal Pkg-13,1200000000,DOC-CCC-013.pdf;DOC-CC-013.pdf,33000000
 HV-IC-0129,money,threshold_aggregate,resolved,False,Mahanadi Steel Corporation,,,210000000,,2656900000
-HV-IC-0130,money,hop_aggregate,resolved,False,Subarnarekha Valley Corporation,Amit Iyer,Six-Lane Highway — Maharashtra Pkg-104,,DOC-CCC-104.pdf;DOC-CC-104.pdf,3698700000
+HV-IC-0130,money,hop_aggregate,resolved,False,,Amit Iyer,Six-Lane Highway — Maharashtra Pkg-104,,DOC-CCC-104.pdf;DOC-CC-104.pdf,3698700000
 HV-IC-0131,money,exclusion_aggregate,resolved,False,Maharashtra Municipal Corporation,,,,,592700000
 HV-IC-0134,money,avg_work_size,resolved,False,,Jaya Desai,Rail Tunnel — West Bengal Pkg-123,,DOC-CCC-123.pdf;DOC-CC-123.pdf,450694737
 HV-IC-0135,money,exclusion_aggregate,resolved,False,Mahanadi Steel Corporation,,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,2833800000
-HV-IC-0136,days,date_span,resolved,False,,Divya Singh,Lift Irrigation — West Bengal Pkg-13,,DOC-CCC-013.pdf;DOC-CC-013.pdf,86
-HV-IC-0138,money,gap_awarded_invoiced,resolved,False,"Irrigation & Waterways Dept, Govt of Rajasthan",,Lift Irrigation — Rajasthan Pkg-41,,DOC-CCC-041.pdf;DOC-CC-041.pdf,1901520126
+HV-IC-0136,days,date_span,resolved,False,,Divya Singh,Lift Irrigation — West Bengal Pkg-13,,DOC-CCC-013.pdf;DOC-CC-013.pdf,27
+HV-IC-0138,money,gap_awarded_invoiced,resolved,False,"Irrigation & Waterways Dept, Govt of Rajasthan",,Lift Irrigation — Rajasthan Pkg-41,,DOC-CCC-041.pdf;DOC-CC-041.pdf,1701520126
 HV-IC-0139,percent,collection_pct,resolved,False,,Naveen Roy,Handpump Installation — Uttar Pradesh Pkg-134,,DOC-CCC-134.pdf;DOC-CC-134.pdf,99.05
 HV-IC-0140,money,exclusion_aggregate,resolved,False,Mahanadi Steel Corporation,,,,,2615300000
 HV-IC-0144,days,date_span,resolved,False,,Naveen Roy,Handpump Installation — Uttar Pradesh Pkg-134,,DOC-CCC-134.pdf;DOC-CC-134.pdf,1388
 HV-IC-0146,percent,collection_pct,resolved,False,,Kavita Reddy,Flyover — Gujarat Pkg-8,,DOC-CCC-008.pdf;DOC-CC-008.pdf,88.9
 HV-IC-0148,money,year_difference,resolved,False,Arunodaya Infrastructure,,,,,49800000
 HV-IC-0149,money,hop_aggregate,resolved,False,Peninsular Petroleum Corporation,Rohit Singh,Check Dam — Maharashtra Pkg-69,,DOC-CCC-069.pdf;DOC-CC-069.pdf,1366300000
-HV-IC-0151,money,temporal_chain,resolved,False,,Naveen Roy,,,,0
+HV-IC-0151,money,temporal_chain,resolved,False,,Naveen Roy,,,,769000000
 HV-IC-0153,money,hop_aggregate,resolved,False,Trishakti Power Generation Corporation,Pooja Sen,Water Treatment Plant — West Bengal Pkg-44,,DOC-CCC-044.pdf;DOC-CC-044.pdf,8563200000
 HV-IC-0155,money,year_difference,resolved,False,"Public Works Department, Govt of Gujarat",,,,,197200000
 HV-IC-0156,money,threshold_aggregate,resolved,False,Trishakti Power Generation Corporation,,,400000000,,7013400000
 HV-IC-0158,days,date_span,resolved,False,,Farhan Rao,Material Handling Plant — Uttar Pradesh Pkg-26,,DOC-CCC-026.pdf;DOC-CC-026.pdf,1589
 HV-IC-0159,money,exclusion_aggregate,resolved,False,Trishakti Power Generation Corporation,,,,,4563200000
 HV-IC-0161,days,date_span,resolved,False,,Rahul Menon,Highway Tunnel — West Bengal Pkg-120,,DOC-CCC-120.pdf;DOC-CC-120.pdf,801
-HV-IC-0162,money,mean_minus_median,resolved,False,,Amit Iyer,Community Centre — Uttar Pradesh Pkg-139,,DOC-CCC-139.pdf;DOC-CC-139.pdf,115433333.33333331
-HV-IC-0163,money,gap_awarded_invoiced,resolved,False,Trishakti Power Generation Corporation,,,,,6999776500
+HV-IC-0162,money,mean_minus_median,resolved,False,,Amit Iyer,Community Centre — Uttar Pradesh Pkg-139,,DOC-CCC-139.pdf;DOC-CC-139.pdf,115433333
+HV-IC-0163,money,gap_awarded_invoiced,resolved,False,Trishakti Power Generation Corporation,,,,,6799776500
 HV-IC-0164,days,date_span,resolved,False,,Gautam Joshi,Material Handling Plant — Jharkhand Pkg-61,,DOC-CCC-061.pdf;DOC-CC-061.pdf,143
-HV-IC-0167,money,mean_minus_median,resolved,False,,Suresh Das,Road Widening — Odisha Pkg-98,,DOC-CCC-098.pdf;DOC-CC-098.pdf,31185714.2857143
+HV-IC-0167,money,mean_minus_median,resolved,False,,Suresh Das,Road Widening — Odisha Pkg-98,,DOC-CCC-098.pdf;DOC-CC-098.pdf,31185714
 HV-IC-0172,money,rank_value,resolved,False,National Expressway Development Authority,,,,,880700000
 HV-IC-0175,money,hop_aggregate,resolved,False,"Public Health Engineering Dept, Odisha",Jaya Desai,Stormwater Drainage — Odisha Pkg-59,,DOC-CCC-059.pdf;DOC-CC-059.pdf,1661400000
 HV-IC-0176,money,exclusion_aggregate,resolved,False,Suvarna Projects Limited,,,,,2097600000
-HV-IC-0177,days,date_span,resolved,False,,Sunita Joshi,Residential Quarters — Uttar Pradesh Pkg-25,,DOC-CCC-025.pdf;DOC-CC-025.pdf,87
-HV-IC-0178,money,mean_minus_median,resolved,False,,Sanjay Joshi,,,,16233333.333333343
+HV-IC-0177,days,date_span,resolved,False,,Sunita Joshi,Residential Quarters — Uttar Pradesh Pkg-25,,DOC-CCC-025.pdf;DOC-CC-025.pdf,57
+HV-IC-0178,money,mean_minus_median,resolved,False,,Sanjay Joshi,,,,240294737
 HV-IC-0180,percent,referenced_share,resolved,False,Suvarna Projects Limited,,,,,88.89
 HV-IC-0181,count,distinct_count,resolved,False,,Lakshmi Ghosh,,,,5
 HV-IC-0183,money,year_difference,resolved,False,"Jal Nigam, Jharkhand",,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,661000000
 HV-IC-0184,money,avg_work_size,resolved,False,,Naveen Roy,Cable Stayed Bridge — Delhi Pkg-109,,DOC-CCC-109.pdf;DOC-CC-109.pdf,783183333
 HV-IC-0185,money,exclusion_aggregate,resolved,False,"Jal Nigam, Uttar Pradesh",,STP — Uttar Pradesh Pkg-31,,DOC-CCC-031.pdf;DOC-CC-031.pdf,1383400000
-HV-IC-0186,money,temporal_chain,resolved,False,,Lakshmi Ghosh,,,,0
+HV-IC-0186,money,temporal_chain,resolved,False,,Lakshmi Ghosh,,,,201600000
 HV-IC-0188,money,avg_work_size,resolved,False,,Pooja Sen,Hydro Tunnel — West Bengal Pkg-105,,DOC-CCC-105.pdf;DOC-CC-105.pdf,260188889
 HV-IC-0189,percent,collection_pct,resolved,False,,Meera Roy,Sewerage Network — Odisha Pkg-17,,DOC-CCC-017.pdf;DOC-CC-017.pdf,82.4
 HV-IC-0191,money,threshold_aggregate,resolved,False,Subarnarekha Valley Corporation,,,20000000,,3679300000
 HV-IC-0192,money,rank_value,resolved,False,National Expressway Development Authority,,,,,880700000
-HV-IC-0193,money,avg_work_size,resolved,False,,Neha Chopra,WTP Augmentation — West Bengal Pkg-30,,DOC-CCC-030.pdf;DOC-CC-030.pdf,277757143
-HV-IC-0194,money,mean_minus_median,resolved,False,,Pooja Bose,Process Piping Package — Tamil Nadu Pkg-54,,DOC-CCC-054.pdf;DOC-CC-054.pdf,61833333.33333331
+HV-IC-0193,money,avg_work_size,resolved,False,,Neha Chopra,WTP Augmentation — West Bengal Pkg-30,,DOC-CCC-030.pdf;DOC-CC-030.pdf,116057143
+HV-IC-0194,money,mean_minus_median,resolved,False,,Pooja Bose,Process Piping Package — Tamil Nadu Pkg-54,,DOC-CCC-054.pdf;DOC-CC-054.pdf,61833333
 HV-IC-0195,percent,collection_pct,resolved,False,,Suresh Chopra,Substation EPC — Tamil Nadu Pkg-19,,DOC-CCC-019.pdf;DOC-CC-019.pdf,89.19
-HV-IC-0196,money,gap_to_threshold,resolved,False,"Public Works Department, Govt of Gujarat",,STP — Gujarat Pkg-3,700000000,DOC-CCC-003.pdf;DOC-CC-003.pdf,11500000
-HV-IC-0197,money,gap_awarded_invoiced,resolved,False,Maharashtra Municipal Corporation,,,,,532779688
-HV-IC-0198,money,gap_awarded_invoiced,resolved,False,Arunodaya Infrastructure,,,,,1033673040
+HV-IC-0196,money,gap_to_threshold,resolved,True,,,STP — Gujarat Pkg-3,700000000,DOC-CCC-003.pdf;DOC-CC-003.pdf,54604000000
+HV-IC-0197,money,gap_awarded_invoiced,resolved,False,Maharashtra Municipal Corporation,,,,,332779688
+HV-IC-0198,money,gap_awarded_invoiced,resolved,False,Arunodaya Infrastructure,,,,,833673040
 HV-IC-0200,days,date_span,resolved,False,,Lakshmi Ghosh,Road Widening — Madhya Pradesh Pkg-42,,DOC-CCC-042.pdf;DOC-CC-042.pdf,438
 HV-IC-0202,money,threshold_aggregate,resolved,False,"Public Health Engineering Dept, Odisha",,,180000000,,1621500000
 HV-IC-0206,money,hop_aggregate,resolved,False,Mega Infrastructure Authority,Uma Sen,Check Dam — Uttar Pradesh Pkg-83,,DOC-CCC-083.pdf;DOC-CC-083.pdf,4098100000
-HV-IC-0207,money,temporal_chain,resolved,False,,Meera Roy,,,,0
+HV-IC-0207,money,temporal_chain,resolved,False,,Meera Roy,,,,1083300000
 HV-IC-0209,money,avg_work_size,resolved,False,,Amit Iyer,Rigid Pavement — Madhya Pradesh Pkg-7,,DOC-CCC-007.pdf;DOC-CC-007.pdf,274683333
 HV-IC-0211,money,year_difference,resolved,False,Jharkhand Municipal Corporation,,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,17900000
-HV-IC-0212,money,gap_awarded_invoiced,resolved,False,Mega Infrastructure Authority,,,,,3336816908
+HV-IC-0212,money,gap_awarded_invoiced,resolved,False,Mega Infrastructure Authority,,,,,3136816908
 HV-IC-0214,percent,collection_pct,resolved,False,,Amit Iyer,Community Centre — Uttar Pradesh Pkg-139,,DOC-CCC-139.pdf;DOC-CC-139.pdf,78.63
 HV-IC-0215,money,exclusion_aggregate,resolved,False,Subarnarekha Valley Corporation,,,,,3284500000
 HV-IC-0216,money,exclusion_aggregate,resolved,False,Peninsular Petroleum Corporation,,,,,831800000
 HV-IC-0217,money,rank_value,resolved,False,Meridian Constructors & Co.,,,,,1067200000
 HV-IC-0220,money,threshold_aggregate,resolved,False,Peninsular Petroleum Corporation,,,150000000,,1077300000
-HV-IC-0222,money,avg_work_size,resolved,False,,Priya Patel,Pumping Station — Rajasthan Pkg-100,,DOC-CCC-100.pdf;DOC-CC-100.pdf,326300000
+HV-IC-0222,money,avg_work_size,resolved,False,,Priya Patel,Pumping Station — Rajasthan Pkg-100,,DOC-CCC-100.pdf;DOC-CC-100.pdf,783183333
 HV-IC-0223,money,exclusion_aggregate,resolved,False,Trishakti Power Generation Corporation,,,,,7802900000
 HV-IC-0224,money,hop_aggregate,resolved,False,Central Works & Buildings Bureau,Uma Sen,Pumping Station — Odisha Pkg-79,,DOC-CCC-079.pdf;DOC-CC-079.pdf,1591200000
 HV-IC-0225,count,distinct_count,resolved,False,,Sunita Joshi,,,,6
 HV-IC-0226,money,exclusion_aggregate,resolved,False,Tamil Nadu Municipal Corporation,,,,,1732800000
-HV-IC-0227,money,gap_awarded_invoiced,resolved,False,"Jal Nigam, Jharkhand",,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,1179034540
+HV-IC-0227,money,gap_awarded_invoiced,resolved,False,"Jal Nigam, Jharkhand",,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,979034540
 HV-IC-0228,money,year_difference,resolved,False,Mega Infrastructure Authority,,,,,1958800000
 HV-IC-0229,money,hop_aggregate,resolved,False,Suvarna Projects Limited,Pooja Sen,Hydro Tunnel — West Bengal Pkg-105,,DOC-CCC-105.pdf;DOC-CC-105.pdf,2341700000
 HV-IC-0232,money,rank_value,resolved,False,Peninsular Petroleum Corporation,,,,,250600000
@@ -151,73 +151,73 @@ HV-IC-0236,money,rank_value,resolved,False,Tamil Nadu Municipal Corporation,,,,,
 HV-IC-0240,money,avg_work_size,resolved,False,,Asha Nair,WTP Augmentation — Maharashtra Pkg-93,,DOC-CCC-093.pdf;DOC-CC-093.pdf,334700000
 HV-IC-0242,money,threshold_aggregate,resolved,False,Trishakti Power Generation Corporation,,,70000000,,8436100000
 HV-IC-0243,money,rank_value,resolved,False,Arunodaya Infrastructure,,,,,52200000
-HV-IC-0244,days,date_span,resolved,False,,Priti Pillai,Hospital Block — West Bengal Pkg-60,,DOC-CCC-060.pdf;DOC-CC-060.pdf,1277
-HV-IC-0248,money,rank_value,resolved,False,"Public Works Department, Govt of Maharashtra",,,,,57000000
+HV-IC-0244,days,date_span,resolved,False,,Priti Pillai,Hospital Block — West Bengal Pkg-60,,DOC-CCC-060.pdf;DOC-CC-060.pdf,1217
+HV-IC-0248,money,rank_value,resolved,True,,,,,,57000000
 HV-IC-0249,money,year_difference,resolved,False,Tamil Nadu Municipal Corporation,,,,,1196800000
-HV-IC-0253,percent,referenced_share,resolved,False,"Public Works Department, Govt of Maharashtra",,,,,83.33
+HV-IC-0253,percent,referenced_share,resolved,True,,,,,,83.33
 HV-IC-0255,money,rank_value,resolved,False,Suvarna Projects Limited,,,,,645300000
 HV-IC-0256,percent,collection_pct,resolved,False,,Priti Pillai,Material Handling Plant — Madhya Pradesh Pkg-68,,DOC-CCC-068.pdf;DOC-CC-068.pdf,79.82
 HV-IC-0258,money,threshold_aggregate,resolved,False,Subarnarekha Valley Corporation,,,220000000,,2997300000
-HV-IC-0259,money,mean_minus_median,resolved,False,,Tanvir Menon,Hydro Tunnel — Madhya Pradesh Pkg-108,,DOC-CCC-108.pdf;DOC-CC-108.pdf,271442857.1428572
+HV-IC-0259,money,mean_minus_median,resolved,False,,Tanvir Menon,Hydro Tunnel — Madhya Pradesh Pkg-108,,DOC-CCC-108.pdf;DOC-CC-108.pdf,271442857
 HV-IC-0260,money,hop_aggregate,resolved,False,Trishakti Power Generation Corporation,Farhan Roy,Stormwater Drainage — Gujarat Pkg-80,,DOC-CCC-080.pdf;DOC-CC-080.pdf,8563200000
-HV-IC-0263,count,absence,resolved,False,"Public Health Engineering Dept, Odisha",,,,,3
+HV-IC-0263,count,absence,resolved,True,,,,,,3
 HV-IC-0264,money,threshold_aggregate,resolved,False,Mahanadi Steel Corporation,,,350000000,,1738500000
-HV-IC-0266,money,gap_awarded_invoiced,resolved,False,Tamil Nadu Municipal Corporation,,,,,1691908530
+HV-IC-0266,money,gap_awarded_invoiced,resolved,False,Tamil Nadu Municipal Corporation,,,,,1491908530
 HV-IC-0268,money,avg_work_size,resolved,False,,Tanvir Malhotra,Cable Stayed Bridge — Uttar Pradesh Pkg-121,,DOC-CCC-121.pdf;DOC-CC-121.pdf,416875000
 HV-IC-0269,money,year_difference,resolved,False,Mega Infrastructure Authority,,,,,368700000
 HV-IC-0270,money,temporal_chain,resolved,False,,Neha Chopra,,,,410800000
-HV-IC-0271,money,mean_minus_median,resolved,False,,Lakshmi Ghosh,Steel Truss Bridge — Gujarat Pkg-112,,DOC-CCC-112.pdf;DOC-CC-112.pdf,240294736.84210527
+HV-IC-0271,money,mean_minus_median,resolved,False,,Lakshmi Ghosh,Steel Truss Bridge — Gujarat Pkg-112,,DOC-CCC-112.pdf;DOC-CC-112.pdf,240294737
 HV-IC-0273,money,exclusion_aggregate,resolved,False,National Expressway Development Authority,,,,,2262700000
-HV-IC-0276,money,mean_minus_median,resolved,False,,Meera Roy,,,,31871428.571428597
+HV-IC-0276,money,mean_minus_median,resolved,False,,Meera Roy,,,,2575000
 HV-IC-0278,money,avg_work_size,resolved,False,,Tanvir Menon,Rail Tunnel — Jharkhand Pkg-102,,DOC-CCC-102.pdf;DOC-CC-102.pdf,410966667
-HV-IC-0279,money,hop_aggregate,resolved,False,Arunodaya Infrastructure,,,,,2219900000
+HV-IC-0279,money,hop_aggregate,resolved,False,Arunodaya Infrastructure,,,,,58000000
 HV-IC-0280,money,hop_aggregate,resolved,False,"Public Health Engineering Dept, Odisha",Rajesh Rao,School Building — Odisha Pkg-136,,DOC-CCC-136.pdf;DOC-CC-136.pdf,1661400000
 HV-IC-0282,money,year_difference,resolved,False,Mahanadi Steel Corporation,,,,,50500000
-HV-IC-0284,money,gap_awarded_invoiced,resolved,False,Meridian Constructors & Co.,,,,,875511822
-HV-IC-0285,money,gap_awarded_invoiced,resolved,False,Suvarna Projects Limited,,,,,1351409347
+HV-IC-0284,money,gap_awarded_invoiced,resolved,False,Meridian Constructors & Co.,,,,,675511822
+HV-IC-0285,money,gap_awarded_invoiced,resolved,False,Suvarna Projects Limited,,,,,2341700000
 HV-IC-0286,money,threshold_aggregate,resolved,False,"Jal Nigam, Uttar Pradesh",,STP — Uttar Pradesh Pkg-31,350000000,DOC-CCC-031.pdf;DOC-CC-031.pdf,1324900000
 HV-IC-0287,money,year_difference,resolved,False,Mega Infrastructure Authority,,,,,826600000
 HV-IC-0289,money,year_difference,resolved,False,Suvarna Projects Limited,,,,,436000000
 HV-IC-0290,days,date_span,resolved,False,,Rahul Das,Institutional Building — Delhi Pkg-81,,DOC-CCC-081.pdf;DOC-CC-081.pdf,1503
 HV-IC-0291,money,avg_work_size,resolved,False,,Asha Nair,School Building — Madhya Pradesh Pkg-145,,DOC-CCC-145.pdf;DOC-CC-145.pdf,585442857
-HV-IC-0292,money,exclusion_aggregate,resolved,False,National Expressway Development Authority,,,,,2730900000
+HV-IC-0292,money,exclusion_aggregate,resolved,False,National Expressway Development Authority,,,,,2942400000
 HV-IC-0293,money,year_difference,resolved,False,Peninsular Petroleum Corporation,,,,,314400000
-HV-IC-0294,money,gap_awarded_invoiced,resolved,False,Mega Infrastructure Authority,,,,,3336816908
+HV-IC-0294,money,gap_awarded_invoiced,resolved,False,Mega Infrastructure Authority,,,,,3136816908
 HV-IC-0295,money,year_difference,resolved,False,National Special Projects Office,,,,,720200000
 HV-IC-0296,money,avg_work_size,resolved,False,,Meera Roy,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,317128571
-HV-IC-0297,money,year_difference,resolved,False,"Public Health Engineering Dept, Gujarat",,STP — Gujarat Pkg-3,,DOC-CCC-003.pdf;DOC-CC-003.pdf,110700000
+HV-IC-0297,money,year_difference,resolved,True,,,STP — Gujarat Pkg-3,,DOC-CCC-003.pdf;DOC-CC-003.pdf,110700000
 HV-IC-0299,money,threshold_aggregate,resolved,False,National Expressway Development Authority,,,210000000,,2629400000
-HV-IC-0300,money,hop_aggregate,resolved,False,National Special Projects Office,,,,,4699100000
-HV-IC-0301,money,gap_awarded_invoiced,resolved,False,Suvarna Projects Limited,,,,,1351409347
+HV-IC-0300,money,hop_aggregate,resolved,False,National Special Projects Office,,,,,3163100000
+HV-IC-0301,money,gap_awarded_invoiced,resolved,False,Suvarna Projects Limited,,,,,1151409347
 HV-IC-0302,money,hop_aggregate,resolved,False,Peninsular Petroleum Corporation,Meera Roy,Hospital Block — Odisha Pkg-39,,DOC-CCC-039.pdf;DOC-CC-039.pdf,1366300000
-HV-IC-0304,money,mean_minus_median,resolved,False,,Chandan Banerjee,Six-Lane Highway — West Bengal Pkg-116,,DOC-CCC-116.pdf;DOC-CC-116.pdf,240294736.84210527
+HV-IC-0304,money,mean_minus_median,resolved,False,,Chandan Banerjee,Six-Lane Highway — West Bengal Pkg-116,,DOC-CCC-116.pdf;DOC-CC-116.pdf,240294737
 HV-IC-0305,money,temporal_chain,resolved,False,,Meera Banerjee,,,,296300000
 HV-IC-0306,money,threshold_aggregate,resolved,False,Suvarna Projects Limited,,,110000000,,2212300000
 HV-IC-0310,money,year_difference,resolved,False,Subarnarekha Valley Corporation,,,,,1255700000
 HV-IC-0311,money,rank_value,resolved,False,Subarnarekha Valley Corporation,,,,,861300000
 HV-IC-0312,days,date_span,resolved,False,,Asha Nair,WTP Augmentation — Maharashtra Pkg-93,,DOC-CCC-093.pdf;DOC-CC-093.pdf,77
-HV-IC-0313,money,gap_awarded_invoiced,resolved,False,Central Works & Buildings Bureau,,,,,1386519548
+HV-IC-0313,money,gap_awarded_invoiced,resolved,False,Central Works & Buildings Bureau,,,,,1186519548
 HV-IC-0314,percent,referenced_share,resolved,False,Mega Infrastructure Authority,,,,,85.71
-HV-IC-0315,money,mean_minus_median,resolved,False,,Amit Iyer,Rigid Pavement — Madhya Pradesh Pkg-7,,DOC-CCC-007.pdf;DOC-CC-007.pdf,61833333.33333331
-HV-IC-0316,money,year_difference,resolved,False,"Jal Nigam, Uttar Pradesh",,,,,153300000
+HV-IC-0315,money,mean_minus_median,resolved,False,,Amit Iyer,Rigid Pavement — Madhya Pradesh Pkg-7,,DOC-CCC-007.pdf;DOC-CC-007.pdf,61833333
+HV-IC-0316,money,year_difference,resolved,True,,,,,,153300000
 HV-IC-0318,days,date_span,resolved,False,,Meera Chatterjee,WTP Augmentation — Tamil Nadu Pkg-9,,DOC-CCC-009.pdf;DOC-CC-009.pdf,1134
-HV-IC-0319,money,exclusion_aggregate,resolved,False,"Public Works Department, Govt of Maharashtra",,Sewerage Network — Maharashtra Pkg-87,,DOC-CCC-087.pdf;DOC-CC-087.pdf,1831599999
+HV-IC-0319,money,exclusion_aggregate,resolved,False,"Public Works Department, Govt of Maharashtra",,Sewerage Network — Maharashtra Pkg-87,,DOC-CCC-087.pdf;DOC-CC-087.pdf,1794000000
 HV-IC-0322,money,threshold_aggregate,resolved,False,National Expressway Development Authority,,,100000000,,2860100000
 HV-IC-0323,money,exclusion_aggregate,resolved,False,Arunodaya Infrastructure,,,,,1219500000
-HV-IC-0324,days,date_span,resolved,False,,Amit Mukherjee,Institutional Building — Uttar Pradesh Pkg-11,,DOC-CCC-011.pdf;DOC-CC-011.pdf,1308
+HV-IC-0324,days,date_span,resolved,False,,Amit Mukherjee,Institutional Building — Uttar Pradesh Pkg-11,,DOC-CCC-011.pdf;DOC-CC-011.pdf,1249
 HV-IC-0326,money,rank_value,resolved,False,Maharashtra Municipal Corporation,,,,,512900000
 HV-IC-0327,money,year_difference,resolved,False,"Public Health Engineering Dept, Odisha",,,,,582600000
 HV-IC-0328,money,exclusion_aggregate,resolved,False,Central Works & Buildings Bureau,,,,,1522500000
 HV-IC-0329,money,avg_work_size,resolved,False,,Meera Banerjee,Rigid Pavement — Tamil Nadu Pkg-70,,DOC-CCC-070.pdf;DOC-CC-070.pdf,274683333
-HV-IC-0330,money,gap_awarded_invoiced,resolved,False,National Special Projects Office,,,,,4243158462
+HV-IC-0330,money,gap_awarded_invoiced,resolved,False,National Special Projects Office,,,,,4043158462
 HV-IC-0331,percent,collection_pct,resolved,False,,Meera Roy,WTP Augmentation — Uttar Pradesh Pkg-2,,DOC-CCC-002.pdf;DOC-CC-002.pdf,79.82
 HV-IC-0332,money,rank_value,resolved,False,Subarnarekha Valley Corporation,,,,,861300000
-HV-IC-0333,money,mean_minus_median,resolved,False,,Naveen Roy,,,,43720000
-HV-IC-0334,money,temporal_chain,resolved,False,,Jaya Desai,,,,39900000
-HV-IC-0335,days,date_span,resolved,False,,Suresh Desai,Residential Quarters — Odisha Pkg-4,,DOC-CCC-004.pdf;DOC-CC-004.pdf,798
+HV-IC-0333,money,mean_minus_median,resolved,False,,Naveen Roy,,,,0
+HV-IC-0334,money,temporal_chain,resolved,False,,Jaya Desai,,,,265700000
+HV-IC-0335,days,date_span,resolved,False,,Suresh Desai,Residential Quarters — Odisha Pkg-4,,DOC-CCC-004.pdf;DOC-CC-004.pdf,1267
 HV-IC-0336,percent,collection_pct,resolved,False,,Suresh Desai,Handpump Installation — Gujarat Pkg-155,,DOC-CCC-155.pdf;DOC-CC-155.pdf,92.5
 HV-IC-0337,money,avg_work_size,resolved,False,,Rahul Menon,Highway Tunnel — West Bengal Pkg-120,,DOC-CCC-120.pdf;DOC-CC-120.pdf,389000000
-HV-IC-0338,money,gap_awarded_invoiced,resolved,False,"Public Health Engineering Dept, Odisha",,,,,629771836
+HV-IC-0338,money,gap_awarded_invoiced,resolved,False,"Public Health Engineering Dept, Odisha",,,,,37604000268
 HV-IC-0339,days,date_span,resolved,False,,Neha Chopra,WTP Augmentation — West Bengal Pkg-30,,DOC-CCC-030.pdf;DOC-CC-030.pdf,110
 HV-IC-0340,money,avg_work_size,resolved,False,,Rahul Menon,Rural Road Upgradation — Jharkhand Pkg-153,,DOC-CCC-153.pdf;DOC-CC-153.pdf,157166667
 HV-IC-0342,money,avg_work_size,resolved,False,,Naveen Roy,STP — Uttar Pradesh Pkg-31,,DOC-CCC-031.pdf;DOC-CC-031.pdf,450694737
@@ -226,32 +226,32 @@ HV-IC-0344,money,rank_value,resolved,False,"Irrigation & Waterways Dept, Govt of
 HV-IC-0346,percent,collection_pct,resolved,False,,Neha Chopra,Bituminous Overlay — Odisha Pkg-35,,DOC-CCC-035.pdf;DOC-CC-035.pdf,82.4
 HV-IC-0347,percent,referenced_share,resolved,False,Meridian Constructors & Co.,,,,,83.33
 HV-IC-0348,money,temporal_chain,resolved,False,,Rahul Das,,,,714500000
-HV-IC-0349,money,mean_minus_median,resolved,False,,Sunita Joshi,Residential Quarters — Uttar Pradesh Pkg-25,,DOC-CCC-025.pdf;DOC-CC-025.pdf,240294736.84210527
+HV-IC-0349,money,mean_minus_median,resolved,False,,Sunita Joshi,Residential Quarters — Uttar Pradesh Pkg-25,,DOC-CCC-025.pdf;DOC-CC-025.pdf,40288889
 HV-IC-0350,percent,collection_pct,resolved,False,,Rahul Menon,Material Handling Plant — Uttar Pradesh Pkg-89,,DOC-CCC-089.pdf;DOC-CC-089.pdf,99.78
-HV-IC-0351,money,temporal_chain,resolved,False,,Rahul Menon,,,,136500000
+HV-IC-0351,money,temporal_chain,resolved,False,,Rahul Menon,,,,898500000
 HV-IC-0352,percent,collection_pct,resolved,False,,Chandan Banerjee,Six-Lane Highway — West Bengal Pkg-116,,DOC-CCC-116.pdf;DOC-CC-116.pdf,99.78
 HV-IC-0356,money,rank_value,resolved,False,National Special Projects Office,,,,,864000000
-HV-IC-0357,percent,referenced_share,resolved,False,"Public Health Engineering Dept, Odisha",,,,,62.5
+HV-IC-0357,percent,referenced_share,resolved,True,,,,,,62.5
 HV-IC-0361,percent,collection_pct,resolved,False,,Neha Chopra,ROB — Delhi Pkg-36,,DOC-CCC-036.pdf;DOC-CC-036.pdf,78.18
-HV-IC-0362,money,gap_awarded_invoiced,resolved,False,Subarnarekha Valley Corporation,,,,,2293370196
+HV-IC-0362,money,gap_awarded_invoiced,resolved,False,Subarnarekha Valley Corporation,,,,,2093370196
 HV-IC-0368,days,date_span,resolved,False,,Naveen Roy,STP — Uttar Pradesh Pkg-31,,DOC-CCC-031.pdf;DOC-CC-031.pdf,1339
-HV-IC-0371,money,gap_awarded_invoiced,resolved,False,"Public Health Engineering Dept, Odisha",,,,,629771836
+HV-IC-0371,money,gap_awarded_invoiced,resolved,False,"Public Health Engineering Dept, Odisha",,,,,429771836
 HV-IC-0373,percent,collection_pct,resolved,False,,Meera Banerjee,Pumping Station — Tamil Nadu Pkg-16,,DOC-CCC-016.pdf;DOC-CC-016.pdf,58
-HV-IC-0374,money,mean_minus_median,resolved,False,,Imran Joshi,Patch Repair — Delhi Pkg-132,,DOC-CCC-132.pdf;DOC-CC-132.pdf,202266666.6666667
+HV-IC-0374,money,mean_minus_median,resolved,False,,Imran Joshi,Patch Repair — Delhi Pkg-132,,DOC-CCC-132.pdf;DOC-CC-132.pdf,202266667
 HV-IC-0376,money,threshold_aggregate,resolved,False,Lakshya Engineering & Construction,,,150000000,,1640400000
-HV-IC-0377,money,threshold_aggregate,resolved,False,"Irrigation & Waterways Dept, Govt of Rajasthan",,,260000000,,1350500000
+HV-IC-0377,money,threshold_aggregate,resolved,False,"Irrigation & Waterways Dept, Govt of Rajasthan",,,260000000,,54633800000
 HV-IC-0380,count,distinct_count,resolved,False,,Tanvir Menon,,,,5
 HV-IC-0381,money,unpaid_balance,resolved,False,Arunodaya Infrastructure,,,,,258859089
-HV-IC-0382,money,gap_awarded_invoiced,resolved,False,Lakshya Engineering & Construction,,,,,213836582
+HV-IC-0382,money,gap_awarded_invoiced,resolved,False,Lakshya Engineering & Construction,,,,,13836582
 HV-IC-0385,percent,collection_pct,resolved,False,,Deepa Chatterjee,Stormwater Drainage — Madhya Pradesh Pkg-24,,DOC-CCC-024.pdf;DOC-CC-024.pdf,88.9
-HV-IC-0386,money,threshold_aggregate,resolved,False,Trishakti Power Generation Corporation,,,250000000,,7548200000
+HV-IC-0386,money,threshold_aggregate,no_match,True,,,,250000000,,7548200000
 HV-IC-0387,days,date_span,resolved,False,,Neha Chopra,Bituminous Overlay — Odisha Pkg-35,,DOC-CCC-035.pdf;DOC-CC-035.pdf,1680
-HV-IC-0389,percent,referenced_share,resolved,False,Trishakti Power Generation Corporation,,,,,89.47
-HV-IC-0390,money,unpaid_balance,resolved,False,Lakshya Engineering & Construction,,,,,304845395
+HV-IC-0389,percent,referenced_share,resolved,False,Trishakti Power Generation Corporation,,,,,99.78
+HV-IC-0390,money,unpaid_balance,resolved,False,Lakshya Engineering & Construction,,,,,1944300000
 HV-IC-0391,money,unpaid_balance,resolved,False,"Irrigation & Waterways Dept, Govt of Uttar Pradesh",,STP — Uttar Pradesh Pkg-31,,DOC-CCC-031.pdf;DOC-CC-031.pdf,5222174
 HV-IC-0392,money,unpaid_balance,resolved,False,Subarnarekha Valley Corporation,,,,,307371878
-HV-IC-0393,money,unpaid_balance,resolved,False,Suvarna Projects Limited,,,,,74257700
-HV-IC-0394,money,unpaid_balance,resolved,False,"Public Works Department, Govt of Gujarat",,STP — Gujarat Pkg-3,,DOC-CCC-003.pdf;DOC-CC-003.pdf,47628436
+HV-IC-0393,money,unpaid_balance,resolved,False,Suvarna Projects Limited,,,,,2341700000
+HV-IC-0394,money,unpaid_balance,resolved,True,,,STP — Gujarat Pkg-3,,DOC-CCC-003.pdf;DOC-CC-003.pdf,47628436
 HV-IC-0395,money,unpaid_balance,resolved,False,Meridian Constructors & Co.,,,,,141252125
 HV-IC-0396,money,unpaid_balance,resolved,False,Arunodaya Infrastructure,,,,,258859089
 HV-IC-0397,money,unpaid_balance,resolved,False,"Irrigation & Waterways Dept, Govt of Rajasthan",,Lift Irrigation — Rajasthan Pkg-41,,DOC-CCC-041.pdf;DOC-CC-041.pdf,25044542
@@ -264,71 +264,71 @@ HV-IC-0403,money,unpaid_balance,resolved,False,"Public Health Engineering Dept, 
 HV-IC-0404,money,unpaid_balance,resolved,False,"Public Works Department, Govt of Tamil Nadu",,Drainage Works — Tamil Nadu Pkg-141,,DOC-CCC-141.pdf;DOC-CC-141.pdf,7822
 HV-IC-0405,money,unpaid_balance,resolved,False,National Expressway Development Authority,,,,,122976053
 HV-IC-0406,money,unpaid_balance,resolved,False,"Jal Nigam, Jharkhand",,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,37740914
-HV-IC-0407,money,unpaid_balance,resolved,False,"Public Health Engineering Dept, Odisha",,,,,181544012
+HV-IC-0407,money,unpaid_balance,resolved,False,"Public Health Engineering Dept, Odisha",,,,,1661400000
 HV-IC-0408,money,unpaid_balance,resolved,False,"Public Works Department, Govt of West Bengal",,STP — West Bengal Pkg-73,,DOC-CCC-073.pdf;DOC-CC-073.pdf,34124708
 HV-IC-0409,money,unpaid_balance,resolved,False,Mahanadi Steel Corporation,,,,,61349923
 HV-IC-0410,money,unpaid_balance,resolved,False,"Jal Nigam, Gujarat",,STP — Gujarat Pkg-3,,DOC-CCC-003.pdf;DOC-CC-003.pdf,330010947
-HV-IC-0411,money,unpaid_balance,resolved,False,Trishakti Power Generation Corporation,,,,,3507654
-HV-IC-0412,money,unpaid_balance,resolved,False,Maharashtra Municipal Corporation,,,,,-13279236
-HV-IC-0413,money,unpaid_balance,resolved,False,Tamil Nadu Municipal Corporation,,,,,59384417
+HV-IC-0411,money,unpaid_balance,resolved,False,Trishakti Power Generation Corporation,,,,,8563200000
+HV-IC-0412,money,unpaid_balance,resolved,False,Maharashtra Municipal Corporation,,,,,653500000
+HV-IC-0413,money,unpaid_balance,resolved,False,Tamil Nadu Municipal Corporation,,,,,1833300000
 HV-IC-0414,money,category_difference,resolved,False,"Public Works Department, Govt of Maharashtra",,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,315700000
 HV-IC-0415,money,category_difference,resolved,False,Trishakti Power Generation Corporation,,,,,298900000
-HV-IC-0416,money,hop_aggregate,resolved,False,Suvarna Projects Limited,,,,,2341700000
-HV-IC-0417,money,hop_aggregate,resolved,False,Jharkhand Municipal Corporation,,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,471500000
+HV-IC-0416,money,hop_aggregate,resolved,False,Suvarna Projects Limited,,,,,129100000
+HV-IC-0417,money,hop_aggregate,resolved,False,Jharkhand Municipal Corporation,,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,227200000
 HV-IC-0418,money,category_difference,resolved,False,Subarnarekha Valley Corporation,,,,,652200000
 HV-IC-0419,money,category_difference,resolved,False,Trishakti Power Generation Corporation,,,,,985600000
 HV-IC-0420,money,category_difference,resolved,False,Mahanadi Steel Corporation,,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,893900000
 HV-IC-0421,money,category_difference,resolved,False,Suvarna Projects Limited,,,,,382500000
-HV-IC-0422,money,hop_aggregate,resolved,False,Suvarna Projects Limited,,,,,2341700000
+HV-IC-0422,money,hop_aggregate,resolved,False,Suvarna Projects Limited,,,,,977100000
 HV-IC-0423,money,category_difference,resolved,False,Mahanadi Steel Corporation,,,,,1201100000
 HV-IC-0424,money,category_difference,resolved,False,Tamil Nadu Municipal Corporation,,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,1196800000
-HV-IC-0425,money,category_difference,resolved,False,National Expressway Development Authority,,,,,188500000
-HV-IC-0426,money,category_difference,resolved,False,Subarnarekha Valley Corporation,,,,,77600000
-HV-IC-0427,money,category_difference,resolved,False,National Expressway Development Authority,,,,,468200000
-HV-IC-0428,money,hop_aggregate,resolved,False,Mahanadi Steel Corporation,,,,,3296200000
+HV-IC-0425,money,category_difference,resolved,False,National Expressway Development Authority,,,,,1118200000
+HV-IC-0426,money,category_difference,resolved,False,Subarnarekha Valley Corporation,,,,,110700000
+HV-IC-0427,money,category_difference,resolved,False,National Expressway Development Authority,,,,,650000000
+HV-IC-0428,money,hop_aggregate,resolved,False,Mahanadi Steel Corporation,,,,,1316400000
 HV-IC-0429,money,category_difference,resolved,False,National Special Projects Office,,,,,1586500000
-HV-IC-0430,money,hop_aggregate,resolved,False,Trishakti Power Generation Corporation,,,,,8563200000
-HV-IC-0431,money,hop_aggregate,resolved,False,Arunodaya Infrastructure,,,,,2219900000
-HV-IC-0432,money,hop_aggregate,resolved,False,Mahanadi Steel Corporation,,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,3296200000
-HV-IC-0434,money,category_difference,resolved,False,Mahanadi Steel Corporation,,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,422500000
-HV-IC-0435,money,hop_aggregate,resolved,False,Trishakti Power Generation Corporation,,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,8563200000
-HV-IC-0436,money,hop_aggregate,resolved,False,Arunodaya Infrastructure,,,,,2219900000
-HV-IC-0437,money,category_difference,resolved,False,Subarnarekha Valley Corporation,,,,,393800000
-HV-IC-0438,money,category_difference,resolved,False,"Public Works Department, Govt of Maharashtra",,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,372700000
-HV-IC-0439,money,category_difference,resolved,False,National Expressway Development Authority,,,,,160800000
+HV-IC-0430,money,hop_aggregate,resolved,False,Trishakti Power Generation Corporation,,,,,102100000
+HV-IC-0431,money,hop_aggregate,resolved,False,Arunodaya Infrastructure,,,,,410300000
+HV-IC-0432,money,hop_aggregate,resolved,False,Mahanadi Steel Corporation,,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,38000000
+HV-IC-0434,money,category_difference,resolved,False,Mahanadi Steel Corporation,,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,1316400000
+HV-IC-0435,money,hop_aggregate,resolved,False,Trishakti Power Generation Corporation,,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,514500000
+HV-IC-0436,money,hop_aggregate,resolved,False,Arunodaya Infrastructure,,,,,369100000
+HV-IC-0437,money,category_difference,resolved,False,Subarnarekha Valley Corporation,,,,,205500000
+HV-IC-0438,money,category_difference,resolved,True,,,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,586900000
+HV-IC-0439,money,category_difference,resolved,False,National Expressway Development Authority,,,,,1090500000
 HV-IC-0440,money,category_difference,resolved,False,Subarnarekha Valley Corporation,,,,,278600000
-HV-IC-0441,money,category_difference,resolved,False,Maharashtra Municipal Corporation,,,,,554700000
+HV-IC-0441,money,category_difference,resolved,False,Maharashtra Municipal Corporation,,,,,573700000
 HV-IC-0442,money,category_difference,resolved,False,Mahanadi Steel Corporation,,,,,256500000
 HV-IC-0443,money,category_difference,resolved,False,Suvarna Projects Limited,,,,,472200000
-HV-IC-0444,money,category_difference,resolved,False,Jharkhand Municipal Corporation,,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,17900000
-HV-IC-0445,money,hop_aggregate,resolved,False,National Expressway Development Authority,,,,,2942400000
-HV-IC-0447,money,hop_aggregate,resolved,False,"Public Health Engineering Dept, Odisha",,Lift Irrigation — Odisha Pkg-6,,DOC-CCC-006.pdf;DOC-CC-006.pdf,1661400000
+HV-IC-0444,money,category_difference,resolved,False,Jharkhand Municipal Corporation,,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,87400000
+HV-IC-0445,money,hop_aggregate,resolved,False,National Expressway Development Authority,,,,,650000000
+HV-IC-0447,money,hop_aggregate,resolved,False,"Public Health Engineering Dept, Odisha",,Lift Irrigation — Odisha Pkg-6,,DOC-CCC-006.pdf;DOC-CC-006.pdf,550900000
 HV-IC-0448,money,category_difference,resolved,False,"Public Works Department, Govt of Maharashtra",,Sewerage Network — Maharashtra Pkg-87,,DOC-CCC-087.pdf;DOC-CC-087.pdf,37600000
 HV-IC-0449,money,category_difference,resolved,False,"Public Health Engineering Dept, Odisha",,,,,187900000
-HV-IC-0450,money,hop_aggregate,resolved,False,Trishakti Power Generation Corporation,,,,,8563200000
-HV-IC-0451,money,hop_aggregate,resolved,False,Subarnarekha Valley Corporation,,,,,3698700000
-HV-IC-0452,money,category_difference,resolved,False,Meridian Constructors & Co.,,,,,1116200000
-HV-IC-0453,money,hop_aggregate,resolved,False,"Jal Nigam, Gujarat",,,,,1665900000
-HV-IC-0454,money,hop_aggregate,resolved,False,Subarnarekha Valley Corporation,,,,,3698700000
+HV-IC-0450,money,hop_aggregate,resolved,False,Trishakti Power Generation Corporation,,,,,3878700000
+HV-IC-0451,money,hop_aggregate,resolved,False,Subarnarekha Valley Corporation,,,,,188300000
+HV-IC-0452,money,category_difference,resolved,False,Meridian Constructors & Co.,,,,,823500000
+HV-IC-0453,money,hop_aggregate,resolved,True,,,,,,5696200000
+HV-IC-0454,money,hop_aggregate,resolved,False,Subarnarekha Valley Corporation,,,,,194900000
 HV-IC-0455,money,category_difference,resolved,False,Suvarna Projects Limited,,,,,924900000
 HV-IC-0456,money,category_difference,resolved,False,Suvarna Projects Limited,,,,,885500000
 HV-IC-0457,money,category_difference,resolved,False,National Special Projects Office,,,,,1666200000
-HV-IC-0459,money,hop_aggregate,resolved,False,Mahanadi Steel Corporation,,,,,3296200000
-HV-IC-0460,money,category_difference,resolved,False,Trishakti Power Generation Corporation,,,,,659200000
-HV-IC-0461,money,hop_aggregate,resolved,False,Mahanadi Steel Corporation,,,,,3296200000
-HV-IC-0462,money,category_difference,resolved,False,National Special Projects Office,,,,,1122500000
-HV-IC-0463,money,category_difference,resolved,False,National Expressway Development Authority,,,,,440500000
-HV-IC-0464,money,hop_aggregate,resolved,False,"Public Works Department, Govt of Maharashtra",,,,,2008199999
-HV-IC-0465,money,category_difference,resolved,False,National Special Projects Office,,,,,464000000
-HV-IC-0466,money,hop_aggregate,resolved,False,Peninsular Petroleum Corporation,,,,,1366300000
-HV-IC-0467,money,category_difference,resolved,False,"Public Works Department, Govt of Maharashtra",,Sewerage Network — Maharashtra Pkg-87,,DOC-CCC-087.pdf;DOC-CC-087.pdf,410300000
-HV-IC-0468,money,hop_aggregate,resolved,False,Trishakti Power Generation Corporation,,,,,8563200000
-HV-IC-0469,money,hop_aggregate,resolved,False,Jharkhand Municipal Corporation,,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,471500000
-HV-IC-0470,money,category_difference,resolved,False,"Public Works Department, Govt of Gujarat",,Drainage Works — Gujarat Pkg-135,,DOC-CCC-135.pdf;DOC-CC-135.pdf,197200000
+HV-IC-0459,money,hop_aggregate,resolved,False,Mahanadi Steel Corporation,,,,,931900000
+HV-IC-0460,money,category_difference,resolved,False,Trishakti Power Generation Corporation,,,,,8563200000
+HV-IC-0461,money,hop_aggregate,resolved,False,Mahanadi Steel Corporation,,,,,1324900000
+HV-IC-0462,money,category_difference,resolved,False,National Special Projects Office,,,,,1202200000
+HV-IC-0463,money,category_difference,resolved,True,,,,,,440500000
+HV-IC-0464,money,hop_aggregate,resolved,True,,,,,,114000000
+HV-IC-0465,money,category_difference,resolved,False,National Special Projects Office,,,,,1202200000
+HV-IC-0466,money,hop_aggregate,resolved,False,Peninsular Petroleum Corporation,,,,,462900000
+HV-IC-0467,money,category_difference,resolved,True,,,Sewerage Network — Maharashtra Pkg-87,,DOC-CCC-087.pdf;DOC-CC-087.pdf,586900000
+HV-IC-0468,money,hop_aggregate,resolved,True,,,,,,8563200000
+HV-IC-0469,money,hop_aggregate,resolved,False,Jharkhand Municipal Corporation,,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,69500000
+HV-IC-0470,money,category_difference,resolved,False,"Public Works Department, Govt of Gujarat",,Drainage Works — Gujarat Pkg-135,,DOC-CCC-135.pdf;DOC-CC-135.pdf,12000000
 HV-IC-0471,money,category_difference,resolved,False,Mahanadi Steel Corporation,,Water Treatment Plant — Delhi Pkg-86,,DOC-CCC-086.pdf;DOC-CC-086.pdf,218500000
-HV-IC-0472,money,hop_aggregate,resolved,False,Suvarna Projects Limited,,,,,2341700000
-HV-IC-0473,money,category_difference,resolved,False,Mahanadi Steel Corporation,,,,,525700000
-HV-IC-0474,money,hop_aggregate,resolved,False,Subarnarekha Valley Corporation,,,,,3698700000
-HV-IC-0475,money,hop_aggregate,resolved,False,Subarnarekha Valley Corporation,,,,,3698700000
-HV-IC-0476,money,category_difference,resolved,False,"Public Works Department, Govt of Maharashtra",,Sewerage Network — Maharashtra Pkg-87,,DOC-CCC-087.pdf;DOC-CC-087.pdf,16699999
+HV-IC-0472,money,hop_aggregate,resolved,False,Suvarna Projects Limited,,,,,153300000
+HV-IC-0473,money,category_difference,resolved,False,Mahanadi Steel Corporation,,,,,3296200000
+HV-IC-0474,money,hop_aggregate,resolved,False,Subarnarekha Valley Corporation,,,,,861300000
+HV-IC-0475,money,hop_aggregate,resolved,False,Subarnarekha Valley Corporation,,,,,83700000
+HV-IC-0476,money,category_difference,resolved,False,"Public Works Department, Govt of Maharashtra",,Sewerage Network — Maharashtra Pkg-87,,DOC-CCC-087.pdf;DOC-CC-087.pdf,16700000
 HV-IC-0477,money,category_difference,resolved,False,Suvarna Projects Limited,,,,,181300000

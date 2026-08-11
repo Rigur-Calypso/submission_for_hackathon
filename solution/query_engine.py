@@ -81,18 +81,6 @@ def find_best_entity_match(text: str, entities: list[str], threshold: int = 80) 
             if entity and f'Pkg-{pkg_num}' in entity:
                 return entity
                 
-    aliases = {
-        'pheg gujarat': 'Public Health Engineering Dept, Gujarat',
-        'pheg': 'Public Health Engineering Dept, Odisha',
-        'phed': 'Public Health Engineering Dept, Odisha',
-        'pwd': 'Public Works Department',
-        'nhai': 'National Highways Authority of India',
-        'bhel': 'Bharat Heavy Electricals Limited',
-        'ntpc': 'National Thermal Power Corporation',
-    }
-    for alias, canonical in aliases.items():
-        text = re.sub(rf'\b{alias}\b', canonical, text, flags=re.IGNORECASE)
-        
     text_norm = normalize(text)
     if not text_norm:
         return None
@@ -548,28 +536,6 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
     elif re.search(r'(?:total|sum|aggregate|combined|value|portfolio)', q, re.IGNORECASE) and not re.search(r'(?:percent|%|collection)', q, re.IGNORECASE):
         intent['shape'] = 'hop_aggregate'
         intent['answer_type'] = 'money'
-
-    # Fix specific adversarial short names as in custom_shapes.py
-    if not intent.get('client'):
-        ql = q.lower()
-        if 'west bengal irrigation' in ql: intent['client'] = 'Irrigation & Waterways Dept, Govt of West Bengal'
-        elif 'up irrigation' in ql: intent['client'] = 'Irrigation & Waterways Dept, Govt of Uttar Pradesh'
-        elif 'gujarat pw' in ql: intent['client'] = 'Public Works Department, Govt of Gujarat'
-        elif 'neda' in ql: intent['client'] = 'National Expressway Development Authority'
-        elif 'gmc' in ql: intent['client'] = 'Gujarat Municipal Corporation'
-        elif 'cwbb' in ql: intent['client'] = 'Central Works & Buildings Bureau'
-        elif 'mmc' in ql: intent['client'] = 'Maharashtra Municipal Corporation'
-        elif 'jn gujarat' in ql or 'jn, gujarat' in ql or 'jal nigam account in gujarat' in ql or 'jal nigam up' in ql: intent['client'] = 'Jal Nigam, Gujarat' if 'gujarat' in ql else 'Jal Nigam, Uttar Pradesh'
-        elif 'mah pwd' in ql: intent['client'] = 'Public Works Department, Govt of Maharashtra'
-        elif 'trishakti' in ql: intent['client'] = 'Trishakti Power Generation Corporation'
-        elif 'public works department account' in ql:
-            if 'irrigation' in ql and ('roads' in ql or 'highways' in ql):
-                intent['client'] = 'Public Works Department, Govt of Maharashtra'
-        elif 'mahanadi steel' in ql: intent['client'] = 'Mahanadi Steel Corporation'
-        elif 'mega infrastructure' in ql: intent['client'] = 'Mega Infrastructure Authority'
-        elif 'maharashtra pwd' in ql: intent['client'] = 'Public Works Department, Govt of Maharashtra'
-        elif 'subarnarekha' in ql: intent['client'] = 'Subarnarekha Valley Corporation'
-        elif 'national expressway' in ql: intent['client'] = 'National Expressway Development Authority'
 
     if intent.get('shape') == 'hop_aggregate':
         if 'assignment' in q.lower() or 'project' in q.lower() or 'work' in q.lower() or 'portfolio' in q.lower():
