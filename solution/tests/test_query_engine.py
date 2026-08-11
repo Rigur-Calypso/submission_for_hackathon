@@ -32,6 +32,33 @@ def test_gap_to_threshold(knowledge_db):
     res = answer_question("What is the gap to reach 100 Crore in total value for Trishakti Power Generation Corporation?", knowledge_db)
     assert res.value == 0  # max(0, 100Cr - 856Cr)
 
+
+def test_fairly_is_not_a_formal_grading(knowledge_db):
+    question = (
+        "I’m reviewing Farhan Roy’s PMP credential for the Stormwater Drainage — "
+        "Gujarat Pkg-80 scope with Trishakti Power Generation Corporation, but I’m "
+        "fairly certain just copying that one line item will tank our margin—what’s the "
+        "actual combined value of every completed assignment he’s delivered to them?"
+    )
+    intent = classify_question(question, knowledge_db)
+    assert intent['grading'] is None
+    assert intent['shape'] == 'hop_aggregate'
+
+
+def test_abbreviated_month_date_is_supported(knowledge_db):
+    intent = classify_question(
+        "Priti's PMP hit Mar 10 2021; how many days to completion?", knowledge_db
+    )
+    assert intent['cert_issue_date'] == '2021-03-10'
+
+
+def test_gap_to_reach_is_not_a_threshold_aggregate(knowledge_db):
+    intent = classify_question(
+        "What is the gap to reach 100 Crore in total value for Trishakti Power Generation Corporation?",
+        knowledge_db,
+    )
+    assert intent['shape'] == 'gap_to_threshold'
+
 def test_adversarial_synonyms(knowledge_db):
     # Testing synonymous phrasing and "at least"
     res = answer_question("Count the unique types of works handled by engineer Rahul Menon.", knowledge_db)

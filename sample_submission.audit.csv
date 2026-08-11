@@ -1,0 +1,22 @@
+question_id,answer_type,shape,status,fallback_used,client,engineer,project,threshold,source_files,answer
+HS-IC-0001,count,absence,resolved,False,"Public Health Engineering Dept, Gujarat",,Drainage Works — Gujarat Pkg-135,,DOC-CCC-135.pdf;DOC-CC-135.pdf,1
+HS-IC-0002,count,absence,resolved,False,"Jal Nigam, Jharkhand",,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,2
+HS-IC-0003,days,date_span,resolved,False,,Asha Nair,School Building — Madhya Pradesh Pkg-145,,DOC-CCC-145.pdf;DOC-CC-145.pdf,1569
+HS-IC-0004,days,date_span,resolved,False,,Chandan Banerjee,WTP Augmentation — West Bengal Pkg-51,,DOC-CCC-051.pdf;DOC-CC-051.pdf,646
+HS-IC-0005,count,distinct_count,resolved,False,,Chandan Banerjee,,,,3
+HS-IC-0006,count,distinct_count,resolved,False,,Asha Nair,,,,4
+HS-IC-0007,money,hop_aggregate,resolved,False,"Public Works Department, Govt of Maharashtra",Rahul Menon,Ring Road — Maharashtra Pkg-125,,DOC-CCC-125.pdf;DOC-CC-125.pdf,2008199999
+HS-IC-0008,money,hop_aggregate,resolved,False,Lakshya Engineering & Construction,Neha Chopra,Residential Quarters — West Bengal Pkg-67,,DOC-CCC-067.pdf;DOC-CC-067.pdf,1944300000
+HS-IC-0009,money,temporal_chain,resolved,False,,Gautam Joshi,,,,518200000
+HS-IC-0010,money,temporal_chain,resolved,False,,Asha Nair,,,,244200000
+HS-IC-0011,money,avg_work_size,resolved,False,,Asha Nair,Cable Stayed Bridge — Jharkhand Pkg-115,,DOC-CCC-115.pdf;DOC-CC-115.pdf,537933333
+HS-IC-0012,money,avg_work_size,resolved,False,,Naveen Roy,Check Dam — Gujarat Pkg-62,,DOC-CCC-062.pdf;DOC-CC-062.pdf,229500000
+HS-IC-0015,money,exclusion_aggregate,resolved,False,"Irrigation & Waterways Dept, Govt of West Bengal",,Lift Irrigation — West Bengal Pkg-13,,DOC-CCC-013.pdf;DOC-CC-013.pdf,763300000
+HS-IC-0016,money,exclusion_aggregate,resolved,False,Jharkhand Municipal Corporation,,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,402000000
+HS-IC-0017,money,gap_to_threshold,resolved,False,"Irrigation & Waterways Dept, Govt of Uttar Pradesh",,STP — Uttar Pradesh Pkg-31,200000000,DOC-CCC-031.pdf;DOC-CC-031.pdf,28700000
+HS-IC-0018,money,rank_value,resolved,False,"Jal Nigam, Jharkhand",,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,84200000
+HS-IC-0019,money,rank_value,resolved,False,Jharkhand Municipal Corporation,,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,227200000
+HS-IC-0020,percent,referenced_share,resolved,False,"Jal Nigam, Jharkhand",,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,33.33
+HS-IC-0021,percent,referenced_share,resolved,False,Jharkhand Municipal Corporation,,ROB — Jharkhand Pkg-29,,DOC-CCC-029.pdf;DOC-CC-029.pdf,66.67
+HS-IC-0024,money,threshold_aggregate,resolved,False,"Jal Nigam, Jharkhand",,ROB — Jharkhand Pkg-29,730000000,DOC-CCC-029.pdf;DOC-CC-029.pdf,1544600000
+HS-IC-0025,money,threshold_aggregate,resolved,False,Maharashtra Municipal Corporation,,,60000000,,634500000

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""evaluate_utils.py — Scoring helper extracted from evaluate.py for reuse."""
+"""Scoring helper kept exactly in sync with the official evaluator."""
 
 
 def score_one(gold, got):
@@ -10,15 +10,6 @@ def score_one(gold, got):
         gold, got = float(gold), float(got)
     except (TypeError, ValueError):
         return 0.0
-    if abs(gold) < 100:                               # counts and percentages
-        if got == gold:
-            return 1.0
-        return 0.3 if abs(got - gold) <= 1 else 0.0
-    err = abs(got - gold) / abs(gold)
-    if err <= 0.005:
-        return 1.0
-    if err <= 0.02:
-        return 0.7
-    if err <= 0.10:
-        return 0.3
-    return 0.0
+    if gold == 0:
+        return 1.0 if got == 0 else 0.0
+    return max(0.0, 1.0 - abs(got - gold) / abs(gold))

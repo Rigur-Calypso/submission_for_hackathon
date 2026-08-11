@@ -13,8 +13,10 @@ Usage:
   python run.py --validate
 """
 import argparse
+import csv
 import json
 import os
+import re
 import sqlite3
 import subprocess
 import sys
@@ -174,7 +176,7 @@ def _extract_grading_cc(text):
 
 
 def answer_questions(questions_path: str, output_path: str, use_llm: bool = False, model_name: str = 'gemini-3.5-flash'):
-    """Answer questions and write submission JSONL."""
+    """Answer questions, write a submission CSV, and emit a reviewable audit CSV."""
     sys.path.insert(0, SOLUTION_DIR)
     
     import query_engine
@@ -192,30 +194,69 @@ def answer_questions(questions_path: str, output_path: str, use_llm: bool = Fals
     print(f"\nAnswering {len(questions)} questions...")
     
     results = []
+    audit_rows = []
     with open(output_path, 'w') as f:
         f.write("question_id,answer\n")
         for q in questions:
-            res = query_engine.answer_question(q['question'], db)
+            intent = query_engine.classify_question(q['question'], db)
+            res = query_engine.answer_question_with_intent(q['question'], intent, db)
             val = res.value
+            fallback_used = False
             
-            # Custom deterministic fallback for adversarial questions
-            if res.status in (query_engine.AnswerStatus.UNSUPPORTED, query_engine.AnswerStatus.NO_MATCH) or val == 0:
+            # An answer of zero can be correct. Only use the optional model fallback
+            # when deterministic parsing genuinely failed.
+            if res.status in (query_engine.AnswerStatus.UNSUPPORTED, query_engine.AnswerStatus.NO_MATCH):
                 if use_llm:
                     print(f"  Fallback to LLM classification for: {q['qid']}")
                     val = llm_query_engine.answer_question(q['question'], db, model_name=model_name)
                     if isinstance(val, tuple): val = val[0]
+                    fallback_used = True
                 else:
                     val = 0
             
             qid = q['qid']
             ans_str = str(int(val)) if isinstance(val, float) and val.is_integer() else str(val)
             f.write(f"{qid},{ans_str}\n")
+            project_sources = ''
+            project = intent.get('project')
+            if project:
+                pkg = re.search(r'Pkg-(\d+)', project, re.IGNORECASE)
+                if pkg:
+                    source_row = db.execute(
+                        "SELECT source_ccc, source_cc FROM projects WHERE pkg_number = ?",
+                        (int(pkg.group(1)),),
+                    ).fetchone()
+                    if source_row:
+                        project_sources = ';'.join(s for s in source_row if s)
+
             results.append({'qid': qid, 'answer': ans_str})
+            audit_rows.append({
+                'question_id': qid,
+                'answer_type': q.get('answer_type', ''),
+                'shape': intent.get('shape', ''),
+                'status': res.status.value,
+                'fallback_used': fallback_used,
+                'client': intent.get('client') or '',
+                'engineer': intent.get('engineer') or '',
+                'project': project or '',
+                'threshold': intent.get('threshold') or '',
+                'source_files': project_sources,
+                'answer': ans_str,
+            })
             
             print(f"  {qid}: answer={ans_str}")
     
     print(f"\n✅ Submission written to {output_path}")
     print(f"   {len(results)} answers")
+
+    audit_path = os.path.splitext(output_path)[0] + '.audit.csv'
+    with open(audit_path, 'w', newline='') as audit_file:
+        fields = list(audit_rows[0]) if audit_rows else ['question_id']
+        writer = csv.DictWriter(audit_file, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(audit_rows)
+    unresolved = sum(row['status'] != 'resolved' for row in audit_rows)
+    print(f"✅ Answer audit written to {audit_path} ({unresolved} unresolved)")
     
     db.close()
     return results
@@ -263,7 +304,7 @@ def main():
     parser.add_argument('--output', default='output/submission.csv', help='Output CSV path')
     parser.add_argument('--skip-build', action='store_true', help="Skip rebuilding the DB if it exists")
     parser.add_argument('--validate', action='store_true', help="Run evaluation after building")
-    parser.add_argument('--use-llm', action=argparse.BooleanOptionalAction, default=True, help="Use Gemini LLM fallback instead of deterministic only")
+    parser.add_argument('--use-llm', action=argparse.BooleanOptionalAction, default=False, help="Use the optional Gemini fallback for unresolved questions")
     parser.add_argument('--model-name', default='gemini-3.5-flash', help="Gemini Model to use for fallback")
     parser.add_argument('--api-key', type=str, help="Gemini API Key (overrides env var)")
     args = parser.parse_args()

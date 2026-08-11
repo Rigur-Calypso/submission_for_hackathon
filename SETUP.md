@@ -26,11 +26,17 @@ Once activated, install all required dependencies using `pip`:
 pip install -r solution/requirements.txt
 ```
 
-### 4. Setup API Key
-The pipeline defaults to using the Gemini LLM fallback for answering hidden questions that the deterministic engine cannot parse. Ensure your `GEMINI_API_KEY` is exported:
+### 4. Optional API Key
+The submission pipeline is deterministic by default. It writes an adjacent
+`*.audit.csv` file containing the detected question shape, resolved entities,
+and any unresolved questions for review.
+
+If you want to use the optional Gemini fallback only for unresolved questions,
+export a key and pass `--use-llm` explicitly:
 
 ```bash
 export GEMINI_API_KEY="your-api-key-here"
+python solution/run.py --questions questions.json --output submission.csv --skip-build --use-llm
 ```
 
 You are now ready to run `solution/run.py`!
