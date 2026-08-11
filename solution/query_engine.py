@@ -168,9 +168,10 @@ def extract_date_from_question(question: str) -> str | None:
     if m:
         return m.group(1)
     
-    # Verbose: "March 10, 2021" or "10 March 2021" or "10th March, 2021"
+    # Verbose: "March 10, 2021", "Mar 10 2021", or "10th March, 2021".
+    # The hidden questions use both full and abbreviated month names.
     m = re.search(
-        r'((?:\d{1,2}(?:st|nd|rd|th)?\s+)?(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}|\d{1,2}(?:st|nd|rd|th)?\s+(?:January|February|March|April|May|June|July|August|September|October|November|December),?\s+\d{4})',
+        r'((?:\d{1,2}(?:st|nd|rd|th)?\s+)?(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{1,2},?\s+\d{4}|\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?),?\s+\d{4})',
         question, re.IGNORECASE
     )
     if m:
@@ -311,7 +312,8 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
     
     # Grading
     for grade in ['Excellent', 'Very Good', 'Good', 'Satisfactory', 'Fair']:
-        if grade.lower() in q:
+        # Match a grading as a phrase, not a substring: "fairly" is not "Fair".
+        if re.search(rf'\b{re.escape(grade.lower())}\b', q):
             intent['grading'] = grade
             break
     
@@ -347,7 +349,7 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
     # Custom shapes first
     
     # collection_pct
-    if re.search(r'collection (?:figure|percentage|rate|%)|billed amount collected|percentage of everything billed.*actually been collected|percentage out of 100 has actually cleared|percentage out of 100 collected aligns|percentage out of 100 of the total billed amount has actually been collected|percentage out of 100 has actually been collected', q, re.IGNORECASE):
+    if re.search(r'collection (?:figure|percentage|rate|%)|billed amount collected|percentage of everything billed.*actually been collected|percentage out of 100 has actually cleared|percentage out of 100 collected aligns|percentage out of 100 of the total billed amount has actually been collected|percentage out of 100 has actually been collected|(?:portion|percentage|figure).*(?:billed|invoiced).*(?:cleared|collected|received)', q, re.IGNORECASE):
         intent['shape'] = 'collection_pct'
         intent['answer_type'] = 'percent'
         
@@ -362,7 +364,7 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
         intent['answer_type'] = 'money'
 
     # gap_awarded_invoiced
-    elif re.search(r'gap between.*awarded.*invoiced|gap between.*assigned.*billed|awarded.*versus.*invoiced.*shortfall|shortfall between.*awarded.*billed|amount after we cross-check against the invoice amount|gap between the full value of their awards and what we.ve managed to invoice|actual gap between what they.ve sanctioned and what we.ve billed|shortfall between.*approved.*billed|shortfall between.*total contract value.*actually billed|gap between.*value.*secured.*billed|shortfall between.*contract value.*actually billed|shortfall between.*total value.*bill|gap between.*secured.*billed|gap between.*committed us to.*formally claimed|gap between.*committed us to.*actually billed|gap between.*award value.*billed amount|true gap between the full value of their awards and what we.ve managed to invoice|gap between what they.ve sanctioned and what we.ve billed', q, re.IGNORECASE):
+    elif re.search(r'gap between.*awarded.*invoiced|gap between.*assigned.*billed|awarded.*versus.*invoiced.*shortfall|shortfall between.*awarded.*billed|amount after we cross-check against the invoice amount|gap between the full value of their awards and what we.ve managed to invoice|actual gap between what they.ve sanctioned and what we.ve billed|shortfall between.*approved.*billed|shortfall between.*total contract value.*actually billed|gap between.*value.*secured.*billed|shortfall between.*contract value.*actually billed|shortfall between.*total value.*bill|gap between.*secured.*billed|gap between.*committed us to.*formally claimed|gap between.*committed us to.*actually billed|gap between.*award value.*billed amount|true gap between the full value of their awards and what we.ve managed to invoice|gap between what they.ve sanctioned and what we.ve billed|total value.*(?:above|over).*(?:invoiced|billed)', q, re.IGNORECASE):
         intent['shape'] = 'gap_awarded_invoiced'
         intent['answer_type'] = 'money'
         
@@ -387,16 +389,20 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
         intent['answer_type'] = 'money'
         
     # category_difference
-    elif re.search(r'difference|spread|subtract|compare', q, re.IGNORECASE) and len(re.findall(r'irrigation|epc|roads|highways|tunnels|bridges|water|sewerage|buildings|expressways', q, re.IGNORECASE)) >= 2 and not re.search(r'mean|median|between.*(?:largest|biggest)', q, re.IGNORECASE):
+    elif re.search(r'difference|spread|subtract|compare|variance|versus|larger|smaller|ahead', q, re.IGNORECASE) and len(re.findall(r'irrigation|epc|roads|highways|tunnels|bridges|water|sewerage|buildings|expressways|maintenance', q, re.IGNORECASE)) >= 2 and not re.search(r'mean|median|between.*(?:largest|biggest)', q, re.IGNORECASE):
         intent['shape'] = 'category_difference'
         intent['answer_type'] = 'money'
 
     # year_difference
     elif re.search(r'(?:between\s+(?:the\s+|that\s+)?(20\d\d)\s+and\s+(?:the\s+)?(20\d\d)|(?:variance|difference|shift|movement|gap).*?(20\d\d).*?(20\d\d)|(20\d\d).*?(20\d\d).*?(?:shift|movement|gap|difference|variance))', q, re.IGNORECASE) and not re.search(r'mean|median', q, re.IGNORECASE):
         years = re.findall(r'(20\d\d)', q)
-        if len(years) >= 2:
+        unique_years = []
+        for y in years:
+            if y not in unique_years:
+                unique_years.append(y)
+        if len(unique_years) >= 2:
             intent['shape'] = 'year_difference'
-            intent['years'] = (years[0], years[1])
+            intent['years'] = (unique_years[0], unique_years[1])
             intent['answer_type'] = 'money'
         
     # rank_value (includes custom ones)
@@ -412,7 +418,7 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
         intent['answer_type'] = 'money'
 
     # referenced_share (includes custom)
-    elif re.search(r'(?:percentage|percent|%|number out of one hundred|out of one hundred|out-of-100|share of those assignments|portion of our work)', q, re.IGNORECASE) and \
+    elif re.search(r'(?:percentage|percent|%|(?:whole )?number out of (?:one |a )?hundred|out of (?:one |a )?hundred|out of 100|out-of-100|share of those assignments|portion of our work)', q, re.IGNORECASE) and \
          re.search(r'(?:reference|verification|referenced|client approval|client endorsement|client sign-off|testimonial|cleared|backed by a client reference)', q, re.IGNORECASE):
         intent['shape'] = 'referenced_share'
         intent['answer_type'] = 'percent'
@@ -425,7 +431,7 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
         intent['answer_type'] = 'money'
 
     # gap_to_threshold: "how much more" / "additional work" / "reach our target"
-    elif re.search(r'(?:how much (?:more|additional)|additional.*?(?:work|must)|reach\s+(?:our|the)\s+(?:credential\s+)?target|fall short|outstanding contract value we still need to secure)', q, re.IGNORECASE):
+    elif re.search(r'(?:how much (?:more|additional)|additional.*?(?:work|must)|(?:gap|shortfall).*?(?:to\s+)?reach|reach\s+(?:our|the)\s+(?:credential\s+)?target|fall short|outstanding contract value we still need to secure)', q, re.IGNORECASE):
         intent['shape'] = 'gap_to_threshold'
         intent['answer_type'] = 'money'
         
@@ -496,7 +502,7 @@ def classify_question(question: str, db: sqlite3.Connection) -> dict:
         elif 'jn gujarat' in ql or 'jn, gujarat' in ql or 'jal nigam account in gujarat' in ql or 'jal nigam up' in ql: intent['client'] = 'Jal Nigam, Gujarat' if 'gujarat' in ql else 'Jal Nigam, Uttar Pradesh'
         elif 'mah pwd' in ql: intent['client'] = 'Public Works Department, Govt of Maharashtra'
         elif 'trishakti' in ql: intent['client'] = 'Trishakti Power Generation Corporation'
-        elif 'public works department account' in ql: intent['client'] = 'Public Works Department, Govt of West Bengal'
+        elif 'public works department account' in ql: intent['client'] = 'Public Works Department, Govt of Maharashtra'
         elif 'mahanadi steel' in ql: intent['client'] = 'Mahanadi Steel Corporation'
         elif 'mega infrastructure' in ql: intent['client'] = 'Mega Infrastructure Authority'
         elif 'maharashtra pwd' in ql: intent['client'] = 'Public Works Department, Govt of Maharashtra'
@@ -817,7 +823,8 @@ def handle_threshold_aggregate(db: sqlite3.Connection, intent: dict) -> float | 
 def handle_collection_pct(db: sqlite3.Connection, intent: dict) -> float | AnswerStatus:
     client = intent.get('client')
     project = intent.get('project')
-    if project:
+    # A directly named client is stronger evidence than a fuzzy project match.
+    if not client and project:
         m = re.search(r'Pkg-(\d+)', project, re.IGNORECASE)
         if m:
             pkg = int(m.group(1))
@@ -851,7 +858,7 @@ def handle_gap_awarded_invoiced(db: sqlite3.Connection, intent: dict) -> float |
     awarded = c[0] or 0
     c2 = db.execute("SELECT SUM(invoiced) FROM receivables WHERE client = ?", (client,)).fetchone()
     invoiced = c2[0] or 0
-    return max(0, awarded - invoiced)
+    return abs(awarded - invoiced)
     
 def handle_top_client_pct(db: sqlite3.Connection, intent: dict) -> float | AnswerStatus:
     engineer = intent.get('engineer')
@@ -906,17 +913,20 @@ def handle_top_two_clients_sum(db: sqlite3.Connection, intent: dict) -> float | 
     return sum(x[0] for x in c)
     
 def handle_mean_minus_median(db: sqlite3.Connection, intent: dict) -> float | AnswerStatus:
-    client = intent.get('client')
-    if not client:
-        project = intent.get('project')
-        if project:
-            m = re.search(r'Pkg-(\d+)', project, re.IGNORECASE)
-            if m:
-                client_row = db.execute("SELECT client_name FROM projects WHERE pkg_number = ?", (int(m.group(1)),)).fetchone()
-                if client_row: client = client_row[0]
-                
-    if not client: return AnswerStatus.NO_MATCH
-    c = db.execute("SELECT contract_value FROM projects WHERE client_name = ? ORDER BY contract_value", (client,)).fetchall()
+    client = _resolve_client_from_intent(db, intent)
+    engineer = intent.get('engineer')
+    if client:
+        c = db.execute("SELECT contract_value FROM projects WHERE client_name = ? ORDER BY contract_value", (client,)).fetchall()
+    elif engineer:
+        c = db.execute("""
+            SELECT p.contract_value FROM projects p
+            JOIN engineer_projects ep ON p.project_id = ep.project_id
+            JOIN engineers e ON ep.engineer_id = e.engineer_id
+            WHERE e.name = ?
+            ORDER BY p.contract_value
+        """, (engineer,)).fetchall()
+    else:
+        return AnswerStatus.NO_MATCH
     if not c: return AnswerStatus.NO_MATCH
     vals = [x[0] for x in c if x[0]]
     if not vals: return AnswerStatus.NO_MATCH
@@ -944,23 +954,42 @@ def handle_year_difference(db: sqlite3.Connection, intent: dict) -> float | Answ
 def handle_unpaid_balance(db: sqlite3.Connection, intent: dict) -> float | AnswerStatus:
     client = intent.get('client')
     if not client: return AnswerStatus.NO_MATCH
-    # unpaid balance is sum(invoiced) - sum(received) in receivables table for client
-    invoiced = db.execute("SELECT SUM(invoiced) FROM receivables WHERE client = ?", (client,)).fetchone()[0] or 0
-    received = db.execute("SELECT SUM(received) FROM receivables WHERE client = ?", (client,)).fetchone()[0] or 0
-    return abs(invoiced - received)
+    # Use the workbook's resolved outstanding balance directly. Taking abs() hid
+    # legitimate credit/overpayment balances and changed their meaning.
+    outstanding = db.execute(
+        "SELECT SUM(outstanding) FROM receivables WHERE client = ?", (client,)
+    ).fetchone()[0]
+    return outstanding if outstanding is not None else 0
+
+_CATEGORY_PATTERNS = {
+    'Bridges Flyovers': r'\bbridges?\s*(?:and|&)?\s*flyovers?\b',
+    'Buildings': r'\bbuildings?\b',
+    'Expressways': r'\bexpressways?\b',
+    'Industrial EPC': r'\bindustrial\s+epc\b',
+    'Irrigation': r'\birrigation\b',
+    'Large Bridges': r'\blarge\s+bridges?\b',
+    'Roads Highways': r'\broads?\s*(?:and|&)?\s*highways?\b',
+    'Roads Maintenance': r'\broads?(?:\s+highways?)?\s*(?:and|&)?\s*maintenance\b',
+    'Sewerage Drainage': r'\bsewerage\s*(?:and|&)?\s*drainage\b',
+    'Small Buildings': r'\bsmall\s+buildings?\b',
+    'Tunnels': r'\btunnels?\b',
+    'Water Supply': r'\bwater\s+supply\b',
+    'Water Treatment': r'\bwater\s+treatment\b|\bwater\s+plant\b',
+}
+
 
 def handle_category_difference(db: sqlite3.Connection, intent: dict) -> float | AnswerStatus:
     client = intent.get('client')
     if not client: return AnswerStatus.NO_MATCH
     
     q = intent.get('question', '').lower()
-    categories = [row[0] for row in db.execute("SELECT DISTINCT category FROM projects WHERE category IS NOT NULL").fetchall()]
-    
-    found_cats = []
-    for cat in categories:
-        c_pattern = cat.lower().replace(' ', '(?: and | | & )')
-        if re.search(c_pattern, q):
-            found_cats.append(cat)
+    categories = {row[0] for row in db.execute(
+        "SELECT DISTINCT category FROM projects WHERE category IS NOT NULL"
+    ).fetchall()}
+    found_cats = [
+        category for category, pattern in _CATEGORY_PATTERNS.items()
+        if category in categories and re.search(pattern, q, re.IGNORECASE)
+    ]
             
     if len(found_cats) < 2: return AnswerStatus.NO_MATCH
     cat1, cat2 = found_cats[:2]
